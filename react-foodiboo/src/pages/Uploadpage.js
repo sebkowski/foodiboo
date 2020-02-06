@@ -56,20 +56,20 @@ const UploadPage = () => {
       style={{
         backgroundColor: "lightblue",
         height: "100vh",
-        paddingTop: "30px",
+        
 
         display: "flex"
       }}
     >
       <Card
         style={{
-          width: "50%",
-          maxHeight: "50%",
-          marginLeft: "27%",
-          marginTop: '100px'
+          width: "100%",
+          maxHeight: "100%",
+          
+          marginTop: '85px'
         }}
       >
-        <button style={{borderRadius: '50%', padding: '1em', height: '50px', width: '50px'}}onClick={() => {fileInput.current.click()}}></button>
+        <button style={{borderRadius: '50%', padding: '1em', height: '50px', width: '50px'}} onClick={() => {fileInput.current.click()}}></button>
         {/* <Form onSubmit={SubmitImage}> */}
         <Form>
           <FormGroup>
@@ -112,7 +112,7 @@ const UploadPage = () => {
         </Form>
         <div className="card">
           {previewImage ? (
-            <img src={previewImage} alt="previewimg" width="50%" height="50%" />
+            <img src={previewImage} alt="previewimg" height="100%" width="100%" style={{transform: 'rotate(90deg)'}} />
           ) : (
             <h3 className="text-center">
               {message ? message : "Live Preview"}
