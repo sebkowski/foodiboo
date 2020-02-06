@@ -28,6 +28,7 @@ const Homepage=() => {
     
     <>
        <div id="foodie_background">FOODIBOO</div>
+       
       <div className="recommended_food_container">
         {foods.map(food => (
 

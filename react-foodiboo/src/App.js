@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
-
+import UploadPage from "./pages/UploadPage.js"
 import Homepage from "./pages/Homepage.js";
 import Navbar from "./components/Navbar.js";
 // import UploadPage from "./pages/UploadPage";
@@ -52,6 +52,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Homepage />
+        </Route>
+        <Route exact path="/uploadPage">
+          <UploadPage />
         </Route>
         {/* <Route exact path="/user/:id">
           <UserProfilePage />
