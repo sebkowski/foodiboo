@@ -1,55 +1,71 @@
-
-import logo from './logo.svg';
-import './App.css';
 import React, { useState } from "react";
-import "./App.css";
+import { Switch, Route } from "react-router-dom";
+
 import Homepage from "./pages/Homepage.js";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import { Switch, Route } from "react-router-dom";
-
 import Navbar from "./components/Navbar.js";
-// import { ToastContainer } from "react-toastify";
-
 // import UploadPage from "./pages/UploadPage";
 
+import './App.css';
+
+import "./Homepage.css"
+// import "bootstrap/dist/css/bootstrap.min.css";
+
+// import logo from './logo.svg';
 
 function App() {
-  const [users, setUsers] = useState([
+  const [foods, setfoods] = useState([
     {
       id: 1,
-      username: "Nasi Lemak",
-      profileImage:
+      food_name: "Nasi Lemak",
+      food_image:
         "http://www.friedchillies.com/images/uploads/reviews/NasiLemakAngah_Kerang.jpg"
     },
     {
       id: 2,
-      username: "Pan Mee",
-      profileImage:
+      food_name: "Pan Mee",
+      food_image:
         "https://i0.wp.com/penangfoodie.com/wp-content/uploads/2018/07/wassupjanice.png?resize=995%2C986"
     },
     {
       id: 3,
-      username: "Chicken Rice",
-      profileImage:
+      food_name: "Chicken Rice",
+      food_image:
         "https://ucarecdn.com/f6a84197-bea2-4aa4-bedb-9635f8d4482c/-/scale_crop/1600x900/center/-/quality/normal/-/format/webp/roasted-chicken-rice.webp"
     }
   ]);
 
   return (
-    <div>
-      <h1>Home Page</h1>
-      <ul>
-        {users.map(user => (
-          <li>
-            {user.id}: {user.username}
-            <img src={user.profileImage} style={{height:"250px", width:"250px"}}>
+    <>
+      {/* <ToastContainer
+        position="bottom-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnVisibilityChange
+        draggable
+        pauseOnHover
+      /> */}
+      <Navbar />
 
-          </img>
-          </li>
-          
-        ))}
-      </ul>
-    </div>
+      <Switch>
+        <Route exact path="/">
+          <Homepage />
+        </Route>
+        {/* <Route exact path="/user/:id">
+          <UserProfilePage />
+        </Route> */}
+        {/* <Route exact path="/profile" component={MyProfilePage}>
+          <MyProfilePage />
+        </Route> */}
+        {/* <Route exact path="/uploadPage">
+          <UploadPage />
+        </Route> */}
+      </Switch>
+    </>
   );
 }
+
 export default App;
+
