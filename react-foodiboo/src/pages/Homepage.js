@@ -81,6 +81,9 @@ const Homepage = () => {
           </div>
         ))}
       </div>
+      <div id="camera_bar">
+        <div className="camera_button"></div>
+      </div>
     </>
   );
 };
