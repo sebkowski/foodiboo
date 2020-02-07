@@ -29,8 +29,34 @@ const Homepage = () => {
   return (
     <>
       <div id="foodie_background">FOODIBOO</div>
-
+      <div className="filter_container">
+        <div className="filter">Filter</div>
+        <div className="sort">Sort</div>
+      </div>
       <div className="recommended_food_container">
+        {foods.map(food => (
+          <div className="food_container">
+            <div>
+              <img
+                src={food.food_image}
+                alt={food.food_name}
+                className="food_image"
+              />
+            </div>
+            {/* <div>STAR</div> */}
+            <div className="food_info_flex_box">
+              <div className="food_info_container">
+                <div className="food_name">{food.food_name}</div>
+                <div>
+                  <img src={Star} className="star_icon"></img>
+                </div>
+              </div>
+              <div className="food_info_distance_container">
+                <div className="food_distance"> 300m</div>
+              </div>
+            </div>
+          </div>
+        ))}
         {foods.map(food => (
           <div className="food_container">
             <div>
