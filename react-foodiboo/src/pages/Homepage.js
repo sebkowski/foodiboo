@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "../../src/Homepage.css"
 
 const Homepage=() => {
-  const [foods, setfoods] = useState([
+  const [food, setfood] = useState([
     {
       id: 1,
       food_name: "Nasi Lemak",
@@ -30,7 +30,7 @@ const Homepage=() => {
        <div id="foodie_background">FOODIBOO</div>
        
       <div className="recommended_food_container">
-        {foods.map(food => (
+        {food.map(food => (
 
             <div className="food_container">
                 <div>

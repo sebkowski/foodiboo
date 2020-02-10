@@ -1,18 +1,23 @@
 import React, { useState } from "react";
+import { ToastContainer } from "react-toastify";
 import { Switch, Route } from "react-router-dom";
 import UploadPage from "./pages/UploadPage.js"
 import Homepage from "./pages/Homepage.js";
 import Navbar from "./components/Navbar.js";
-// import UploadPage from "./pages/UploadPage";
+
+
 
 import './App.css';
 
 import "./Homepage.css"
-// import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // import logo from './logo.svg';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(
+    localStorage.getItem("jwt") !== null
+  );
   const [foods, setfoods] = useState([
     {
       id: 1,
@@ -36,7 +41,7 @@ function App() {
 
   return (
     <>
-      {/* <ToastContainer
+      <ToastContainer
         position="bottom-center"
         autoClose={3000}
         hideProgressBar={false}
@@ -46,8 +51,8 @@ function App() {
         pauseOnVisibilityChange
         draggable
         pauseOnHover
-      /> */}
-      <Navbar />
+      />
+      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
 
       <Switch>
         <Route exact path="/">

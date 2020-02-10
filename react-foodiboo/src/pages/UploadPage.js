@@ -69,7 +69,7 @@ const UploadPage = () => {
           marginTop: '85px'
         }}
       >
-        <button style={{borderRadius: '50%', padding: '1em', height: '50px', width: '50px'}} onClick={() => {fileInput.current.click()}}></button>
+        <button style={{borderRadius: '50%', padding: '1em', height: '65px', width: '65px', position:'absolute', bottom:'50px', right:'50vw'}} onClick={() => {fileInput.current.click()}}></button>
         {/* <Form onSubmit={SubmitImage}> */}
         <Form>
           <FormGroup>
@@ -83,7 +83,7 @@ const UploadPage = () => {
                 setPreviewImage(URL.createObjectURL(e.target.files[0]));
               }}
             /> */}
-            <input
+            {/* <input
               style={{display: 'none'}}
               ref={fileInput}
               capture
@@ -94,8 +94,8 @@ const UploadPage = () => {
                 setImageFile(e.target.files[0]);
                 setPreviewImage(URL.createObjectURL(e.target.files[0]));
               }}
-            />
-            {/* <input
+            /> */}
+            <input
               accept="image/*"
               capture
               style={{ width: "0%" }}
@@ -107,20 +107,20 @@ const UploadPage = () => {
                 setImageFile(e.target.files[0]);
                 setPreviewImage(URL.createObjectURL(e.target.files[0]));
               }}
-            /> */}
+            />
           </FormGroup>
         </Form>
         <div className="card">
           {previewImage ? (
-            <img src={previewImage} alt="previewimg" height="100%" width="100%" style={{transform: 'rotate(90deg)'}} />
+            <img src={previewImage} alt="previewimg" height="100%" width="100%"  style={{transform: 'rotate(90deg)' }} />
           ) : (
-            <h3 className="text-center">
-              {message ? message : "Live Preview"}
-            </h3>
+            <div style={{position:'absolute', right:'50vw'}} >
+              {message ? message : "Take a picture!"}
+            </div>
           )}
         </div>
-        <Button type="submit" color="primary"  style={{  }}>
-          Upload
+        <Button type="submit" color="primary"   style={{position:'absolute', right:'50px', bottom:'50px', borderRadius:'50%'  }}>
+        <span>&#10003;</span>
         </Button>
       </Card>
     </div>

@@ -1,8 +1,23 @@
 import React, { useState } from "react";
 import "../../src/Navbar.css";
+import { toast } from "react-toastify";
+import { Link, useHistory } from "react-router-dom";
+import Login from "./Login"
 
-const Navbar = () => {
+const Navbar = ({loggedIn,setLoggedIn}) => {
+  let history = useHistory();
+  console.log(localStorage.getItem("username"));
+  const[login, setlogin]=useState(false);
+  const [showLogin, setShowLogin] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
+
+  const closeModal = () => {
+    setlogin(false);
+  };
+
+  const openModal = () => {
+    setlogin(true);
+  };
 
   const toggleNav = () => {
     setShowMenu(!showMenu);
@@ -10,9 +25,42 @@ const Navbar = () => {
 
   return (
     <>
+    
+     {login && (
+        <Login
+          loggedIn={loggedIn}
+          setLoggedIn={setLoggedIn}
+          show={login}
+          closeModal={closeModal}
+          openModal={openModal}
+          showLogin={showLogin}
+          setShowLogin={setShowLogin}
+        />
+      )}
       <nav id="navbar">
+      {login ? null : (
+          <span
+            onClick={() => {
+              setlogin(true);
+              setShowLogin(false);
+            }}
+            style={{
+              display: "inlineBlock",
+              cursor: "pointer",
+              textAlign: "center",
+              verticalAlign: "center",
+              marginLeft: "15px",
+
+              color: "white"
+            }}
+          >
+            Sign Up
+          </span>
+        )}
+      
         <input type="text" placeholder="Search Food..." id="search_bar" />
       </nav>
+      
       <div className={showMenu ? "hamburger active" : "hamburger"} onClick={toggleNav}>
         <div className="burger"></div>
       </div>
@@ -27,6 +75,7 @@ const Navbar = () => {
           <div className="hidden_nav_title">Settings</div>
           <div className="hidden_nav_title">About</div>
           <div className="hidden_nav_title">Contact</div>
+          
         </div>
       </div>
     </>
