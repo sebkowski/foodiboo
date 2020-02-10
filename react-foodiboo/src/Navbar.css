@@ -96,3 +96,11 @@
   color: white;
   margin: 0 0 10vh 0;
 }
+.hamburger_clicker {
+  position: fixed;
+  height: 38px;
+  width: 38px;
+  top: 17px;
+  right: 16px;
+  z-index: 3;
+}
