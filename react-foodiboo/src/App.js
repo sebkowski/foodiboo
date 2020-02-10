@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Switch, Route } from "react-router-dom";
-import UploadPage from "./pages/UploadPage.js"
+
+import UploadPage from "./pages/UploadPage.js";
 import Homepage from "./pages/Homepage.js";
 import Navbar from "./components/Navbar.js";
 
-
-
-import './App.css';
-
-import "./Homepage.css"
+import "./App.css";
+import "./Homepage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-// import logo from './logo.svg';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(
@@ -76,4 +72,3 @@ function App() {
 }
 
 export default App;
-
