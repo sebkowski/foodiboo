@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import EXIF from "exif-js";
+import Test from "../images/test.JPG";
+import Test2 from "../images/test2.jpg";
+
 import {
   Button,
   Form,
@@ -7,6 +11,7 @@ import {
   FormControl,
   input
 } from "react-bootstrap";
+
 // import axios from "axios";
 // import { toast } from "react-toastify";
 
@@ -19,44 +24,65 @@ const UploadPage = () => {
   const [message, setMessage] = useState("");
   const [previewImage, setPreviewImage] = useState(null);
 
-//   const SubmitImage = e => {
-//     e.preventDefault();
-//     let JWT = localStorage.getItem("jwt");
-//     let formData = new FormData();
+  const ImageInformation = e => {
+    const img = e.target;
+    EXIF.getData(img, function() {
+      let lattitude = EXIF.getTag(img, "GPSLatitude");
+      let lattitudeRef = EXIF.getTag(img, "GPSLatitudeRef");
+      let longtitude = EXIF.getTag(img, "GPSLongitude");
+      let longtitudeRef = EXIF.getTag(img, "GPSLongitudeRef");
 
-//     formData.append("image", imageFile);
+      let lattitudePos = `${parseFloat(lattitude[0])}°${parseFloat(
+        lattitude[1]
+      )}'${parseFloat(lattitude[2])}"${lattitudeRef}`;
 
-//     console.log(formData);
+      let longtitudePos = `${parseFloat(longtitude[0])}°${parseFloat(
+        longtitude[1]
+      )}'${parseFloat(longtitude[2])}"${longtitudeRef}`;
 
-//     axios
-//       .post("https://insta.nextacademy.com/api/v1/images/", formData, {
-//         headers: { Authorization: `Bearer ${JWT}` }
-//       })
-//       .then(response => {
-//         if (response.data.success) {
-//           toast.info("Image uploaded!", {
-//             position: "bottom-center",
-//             autoClose: 4000,
-//             hideProgressBar: false,
-//             closeOnClick: true,
-//             pauseOnHover: true,
-//             draggable: true
-//           });
-//           setImageFile(null);
-//           setPreviewImage(null);
-//           setMessage("Image Uploaded Successfully!");
-//         }
-//       })
-//       .catch(error => {
-//         console.log(error.response);
-//       });
-//   };
+      console.log(lattitudePos);
+      console.log(longtitudePos);
+      console.log(`${longtitudePos} ${lattitudePos}`);
+    });
+  };
+
+  //   const SubmitImage = e => {
+  //     e.preventDefault();
+  //     let JWT = localStorage.getItem("jwt");
+  //     let formData = new FormData();
+
+  //     formData.append("image", imageFile);
+
+  //     console.log(formData);
+
+  //     axios
+  //       .post("https://insta.nextacademy.com/api/v1/images/", formData, {
+  //         headers: { Authorization: `Bearer ${JWT}` }
+  //       })
+  //       .then(response => {
+  //         if (response.data.success) {
+  //           toast.info("Image uploaded!", {
+  //             position: "bottom-center",
+  //             autoClose: 4000,
+  //             hideProgressBar: false,
+  //             closeOnClick: true,
+  //             pauseOnHover: true,
+  //             draggable: true
+  //           });
+  //           setImageFile(null);
+  //           setPreviewImage(null);
+  //           setMessage("Image Uploaded Successfully!");
+  //         }
+  //       })
+  //       .catch(error => {
+  //         console.log(error.response);
+  //       });
+  //   };
   return (
     <div
       style={{
         backgroundColor: "lightblue",
         height: "100vh",
-        
 
         display: "flex"
       }}
@@ -65,11 +91,24 @@ const UploadPage = () => {
         style={{
           width: "100%",
           maxHeight: "100%",
-          
-          marginTop: '85px'
+
+          marginTop: "85px"
         }}
       >
-        <button style={{borderRadius: '50%', padding: '1em', height: '65px', width: '65px', position:'absolute', bottom:'50px', right:'50vw'}} onClick={() => {fileInput.current.click()}}></button>
+        <button
+          style={{
+            borderRadius: "50%",
+            padding: "1em",
+            height: "65px",
+            width: "65px",
+            position: "absolute",
+            bottom: "50px",
+            right: "50vw"
+          }}
+          onClick={() => {
+            fileInput.current.click();
+          }}
+        ></button>
         {/* <Form onSubmit={SubmitImage}> */}
         <Form>
           <FormGroup>
@@ -112,17 +151,42 @@ const UploadPage = () => {
         </Form>
         <div className="card">
           {previewImage ? (
-            <img src={previewImage} alt="previewimg" height="100%" width="100%"  style={{transform: 'rotate(90deg)' }} />
+            <img
+              src={previewImage}
+              alt="previewimg"
+              height="100%"
+              width="100%"
+              style={{ transform: "rotate(90deg)" }}
+            />
           ) : (
-            <div style={{position:'absolute', right:'50vw'}} >
+            <div style={{ position: "absolute", right: "50vw" }}>
               {message ? message : "Take a picture!"}
             </div>
           )}
         </div>
-        <Button type="submit" color="primary"   style={{position:'absolute', right:'50px', bottom:'50px', borderRadius:'50%'  }}>
-        <span>&#10003;</span>
+        <Button
+          type="submit"
+          color="primary"
+          style={{
+            position: "absolute",
+            right: "50px",
+            bottom: "50px",
+            borderRadius: "50%"
+          }}
+        >
+          <span>&#10003;</span>
         </Button>
       </Card>
+      <img
+        src={Test}
+        style={{ width: "250px", height: "250px" }}
+        onClick={ImageInformation}
+      ></img>
+      <img
+        src={Test2}
+        style={{ width: "250px", height: "250px" }}
+        onClick={ImageInformation}
+      ></img>
     </div>
   );
 };
