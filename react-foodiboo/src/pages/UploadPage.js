@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import EXIF from "exif-js";
 import Test from "../images/test.JPG";
 import Test2 from "../images/test2.jpg";
+import dms2dec from "dms2dec";
 
 import {
   Button,
@@ -34,15 +35,31 @@ const UploadPage = () => {
 
       let lattitudePos = `${parseFloat(lattitude[0])}°${parseFloat(
         lattitude[1]
-      )}'${parseFloat(lattitude[2])}"${lattitudeRef}`;
+      )}'${parseFloat(lattitude[2])}″${lattitudeRef}`;
 
       let longtitudePos = `${parseFloat(longtitude[0])}°${parseFloat(
         longtitude[1]
-      )}'${parseFloat(longtitude[2])}"${longtitudeRef}`;
+      )}'${parseFloat(longtitude[2])}″${longtitudeRef}`;
 
-      console.log(lattitudePos);
-      console.log(longtitudePos);
-      console.log(`${longtitudePos} ${lattitudePos}`);
+      // console.log(lattitudePos);
+      // console.log(longtitudePos);
+      // console.log(`${lattitudePos} ${longtitudePos}`);
+
+      let geoPositionDD = dms2dec(
+        [
+          parseFloat(lattitude[0]),
+          parseFloat(lattitude[1]),
+          parseFloat(lattitude[2])
+        ],
+        lattitudeRef,
+        [
+          parseFloat(longtitude[0]),
+          parseFloat(longtitude[1]),
+          parseFloat(longtitude[2])
+        ],
+        longtitudeRef
+      );
+      console.log(geoPositionDD);
     });
   };
 
