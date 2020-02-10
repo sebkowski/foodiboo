@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import EXIF from "exif-js";
+import dms2dec from "dms2dec";
+import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+
 import Test from "../images/test.JPG";
 import Test2 from "../images/test2.jpg";
-import dms2dec from "dms2dec";
 
 import {
   Button,
@@ -16,14 +18,21 @@ import {
 // import axios from "axios";
 // import { toast } from "react-toastify";
 
-const UploadPage = () => {
+const UploadPage = ({ google }) => {
   let fileInput = React.createRef();
 
   const [imageFile, setImageFile] = useState(null);
   // const [HandleFile, setHandleFile] = useState();
-
   const [message, setMessage] = useState("");
   const [previewImage, setPreviewImage] = useState(null);
+
+  const [x, setX] = useState(3.1347584722222224);
+  const [y, setY] = useState(101.62975277777777);
+
+  const mapStyles = {
+    width: "100%",
+    height: "100%"
+  };
 
   const ImageInformation = e => {
     const img = e.target;
@@ -60,6 +69,10 @@ const UploadPage = () => {
         longtitudeRef
       );
       console.log(geoPositionDD);
+      let lattitudeDD = geoPositionDD[0];
+      let longtitudeDD = geoPositionDD[1];
+      console.log(lattitudeDD);
+      console.log(longtitudeDD);
     });
   };
 
@@ -96,40 +109,50 @@ const UploadPage = () => {
   //       });
   //   };
   return (
-    <div
-      style={{
-        backgroundColor: "lightblue",
-        height: "100vh",
-
-        display: "flex"
-      }}
-    >
-      <Card
-        style={{
-          width: "100%",
-          maxHeight: "100%",
-
-          marginTop: "85px"
-        }}
+    <>
+      <Map
+        google={google}
+        zoom={19}
+        style={mapStyles}
+        initialCenter={{ lat: x, lng: y }}
       >
-        <button
+        <Marker position={{ lat: x, lng: y }} />
+      </Map>
+      <div style={{ display: "none" }}>
+        <div
           style={{
-            borderRadius: "50%",
-            padding: "1em",
-            height: "65px",
-            width: "65px",
-            position: "absolute",
-            bottom: "50px",
-            right: "50vw"
+            backgroundColor: "lightblue",
+            height: "100vh",
+
+            display: "flex"
           }}
-          onClick={() => {
-            fileInput.current.click();
-          }}
-        ></button>
-        {/* <Form onSubmit={SubmitImage}> */}
-        <Form>
-          <FormGroup>
-            {/* <CustomInput
+        >
+          <Card
+            style={{
+              width: "100%",
+              maxHeight: "100%",
+
+              marginTop: "85px"
+            }}
+          >
+            <button
+              style={{
+                borderRadius: "50%",
+                padding: "1em",
+                height: "65px",
+                width: "65px",
+                position: "absolute",
+                bottom: "50px",
+                right: "50vw"
+              }}
+              onClick={() => {
+                fileInput.current.click();
+              }}
+            ></button>
+            {/* <Form onSubmit={SubmitImage}> */}
+            <Form>
+              <FormGroup>
+                {/* <CustomInput
               type="file"
               id="exampleCustomFileBrowser"
               name="image-file"
@@ -139,7 +162,7 @@ const UploadPage = () => {
                 setPreviewImage(URL.createObjectURL(e.target.files[0]));
               }}
             /> */}
-            {/* <input
+                {/* <input
               style={{display: 'none'}}
               ref={fileInput}
               capture
@@ -151,60 +174,66 @@ const UploadPage = () => {
                 setPreviewImage(URL.createObjectURL(e.target.files[0]));
               }}
             /> */}
-            <input
-              accept="image/*"
-              capture
-              style={{ width: "0%" }}
-              type="file"
-              className="form-control-file"
-              name="image-file"
-              multiple={false}
-              onChange={e => {
-                setImageFile(e.target.files[0]);
-                setPreviewImage(URL.createObjectURL(e.target.files[0]));
-              }}
-            />
-          </FormGroup>
-        </Form>
-        <div className="card">
-          {previewImage ? (
-            <img
-              src={previewImage}
-              alt="previewimg"
-              height="100%"
-              width="100%"
-              style={{ transform: "rotate(90deg)" }}
-            />
-          ) : (
-            <div style={{ position: "absolute", right: "50vw" }}>
-              {message ? message : "Take a picture!"}
+                <input
+                  accept="image/*"
+                  capture
+                  style={{ width: "0%" }}
+                  type="file"
+                  className="form-control-file"
+                  name="image-file"
+                  multiple={false}
+                  onChange={e => {
+                    setImageFile(e.target.files[0]);
+                    setPreviewImage(URL.createObjectURL(e.target.files[0]));
+                  }}
+                />
+              </FormGroup>
+            </Form>
+            <div className="card">
+              {previewImage ? (
+                <img
+                  src={previewImage}
+                  alt="previewimg"
+                  height="100%"
+                  width="100%"
+                  style={{ transform: "rotate(90deg)" }}
+                />
+              ) : (
+                <div style={{ position: "absolute", right: "50vw" }}>
+                  {message ? message : "Take a picture!"}
+                </div>
+              )}
             </div>
-          )}
+            <Button
+              type="submit"
+              color="primary"
+              style={{
+                position: "absolute",
+                right: "50px",
+                bottom: "50px",
+                borderRadius: "50%"
+              }}
+            >
+              <span>&#10003;</span>
+            </Button>
+          </Card>
+          <img
+            src={Test}
+            style={{ width: "250px", height: "250px" }}
+            onClick={ImageInformation}
+          ></img>
+          <img
+            src={Test2}
+            style={{ width: "250px", height: "250px" }}
+            onClick={ImageInformation}
+          ></img>
         </div>
-        <Button
-          type="submit"
-          color="primary"
-          style={{
-            position: "absolute",
-            right: "50px",
-            bottom: "50px",
-            borderRadius: "50%"
-          }}
-        >
-          <span>&#10003;</span>
-        </Button>
-      </Card>
-      <img
-        src={Test}
-        style={{ width: "250px", height: "250px" }}
-        onClick={ImageInformation}
-      ></img>
-      <img
-        src={Test2}
-        style={{ width: "250px", height: "250px" }}
-        onClick={ImageInformation}
-      ></img>
-    </div>
+      </div>
+    </>
   );
 };
-export default UploadPage;
+// export default UploadPage;
+
+export default GoogleApiWrapper({
+  apiKey: "AIzaSyDctpk36CsKzJFeEU6Fev5H8tM1Ls2b15Q"
+})(UploadPage);
