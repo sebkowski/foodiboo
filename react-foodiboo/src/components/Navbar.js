@@ -6,7 +6,6 @@ import Login from "./Login";
 
 const Navbar = ({ loggedIn, setLoggedIn }) => {
   let history = useHistory();
-  console.log(localStorage.getItem("username"));
   const [login, setlogin] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
@@ -33,8 +32,8 @@ const Navbar = ({ loggedIn, setLoggedIn }) => {
           closeModal={closeModal}
           openModal={openModal}
           showLogin={showLogin}
-          setShowLogin={setShowLogin} 
-          setShowMenu = {setShowMenu}
+          setShowLogin={setShowLogin}
+          setShowMenu={setShowMenu}
         />
       )}
       <nav id="navbar">
