@@ -40,7 +40,6 @@ const Homepage = ({ google }) => {
 
   return (
     <>
-      <div id="foodie_background">FOODIBOO</div>
       {showMap ? (
         <>
           <div className="blackout_background"></div>
@@ -67,7 +66,7 @@ const Homepage = ({ google }) => {
           </div>
         </>
       ) : null}
-
+      {/* <div id="foodie_background">FOODIBOO</div> */}
       <div className="filter_container">
         <div className="filter">Filter</div>
         <div className="sort">Sort</div>

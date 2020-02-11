@@ -141,14 +141,14 @@ p {
   width: 50px;
   cursor: pointer;
 }
-#foodie_background {
+/* #foodie_background {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
   font-size: 45px;
-}
+} */
 #camera_bar {
   position: fixed;
   bottom: 0;
