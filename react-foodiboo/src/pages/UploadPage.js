@@ -29,12 +29,23 @@ const UploadPage = ({ google }) => {
   const [x, setX] = useState(3.1347584722222224);
   const [y, setY] = useState(101.62975277777777);
 
-  const mapStyles = {
-    width: "100%",
-    height: "100%"
+  const [showMap, setShowMap] = useState(false);
+
+  const openMap = () => {
+    setShowMap(!showMap);
+    console.log(showMap);
   };
 
-  const ImageInformation = e => {
+  const mapStyles = {
+    // position: "fixed",
+    // transform: "translate(-50%,-50%)",
+    width: "500px",
+    height: "500px",
+    margin: "20vh 0 0 10vw",
+    border: "1px solid black"
+  };
+
+  const imageGeolocation = e => {
     const img = e.target;
     EXIF.getData(img, function() {
       let lattitude = EXIF.getTag(img, "GPSLatitude");
@@ -42,18 +53,20 @@ const UploadPage = ({ google }) => {
       let longtitude = EXIF.getTag(img, "GPSLongitude");
       let longtitudeRef = EXIF.getTag(img, "GPSLongitudeRef");
 
-      let lattitudePos = `${parseFloat(lattitude[0])}°${parseFloat(
-        lattitude[1]
-      )}'${parseFloat(lattitude[2])}″${lattitudeRef}`;
+      // GEO LOCATION DMS FORMAT
+      // let lattitudePos = `${parseFloat(lattitude[0])}°${parseFloat(
+      //   lattitude[1]
+      // )}'${parseFloat(lattitude[2])}″${lattitudeRef}`;
 
-      let longtitudePos = `${parseFloat(longtitude[0])}°${parseFloat(
-        longtitude[1]
-      )}'${parseFloat(longtitude[2])}″${longtitudeRef}`;
+      // let longtitudePos = `${parseFloat(longtitude[0])}°${parseFloat(
+      //   longtitude[1]
+      // )}'${parseFloat(longtitude[2])}″${longtitudeRef}`;
 
       // console.log(lattitudePos);
       // console.log(longtitudePos);
       // console.log(`${lattitudePos} ${longtitudePos}`);
 
+      // GEO LOCATION DD FORMAT
       let geoPositionDD = dms2dec(
         [
           parseFloat(lattitude[0]),
@@ -68,7 +81,7 @@ const UploadPage = ({ google }) => {
         ],
         longtitudeRef
       );
-      console.log(geoPositionDD);
+      // console.log(geoPositionDD);
       let lattitudeDD = geoPositionDD[0];
       let longtitudeDD = geoPositionDD[1];
       console.log(lattitudeDD);
@@ -110,14 +123,34 @@ const UploadPage = ({ google }) => {
   //   };
   return (
     <>
-      <Map
-        google={google}
-        zoom={19}
-        style={mapStyles}
-        initialCenter={{ lat: x, lng: y }}
-      >
-        <Marker position={{ lat: x, lng: y }} />
-      </Map>
+      <button style={{ marginTop: "15vh" }} onClick={openMap}>
+        OPEN MAP
+      </button>
+      {showMap ? (
+        // <div
+        //   style={{
+        //     backgroundColor: "black",
+        //     width: "100vw",
+        //     height: "100vh",
+        //     position: "fixed",
+        //     opacity: "0.5"
+        //   }}
+        // >
+        <Map
+          google={google}
+          zoom={17}
+          style={mapStyles}
+          initialCenter={{ lat: x, lng: y }}
+          streetViewControl={false}
+          mapTypeControl={false}
+          zoomControl={false}
+          fullscreenControl={false}
+        >
+          <Marker position={{ lat: x, lng: y }} />
+        </Map>
+      ) : // </div>
+      null}
+
       <div style={{ display: "none" }}>
         <div
           style={{
@@ -220,12 +253,12 @@ const UploadPage = ({ google }) => {
           <img
             src={Test}
             style={{ width: "250px", height: "250px" }}
-            onClick={ImageInformation}
+            onClick={imageGeolocation}
           ></img>
           <img
             src={Test2}
             style={{ width: "250px", height: "250px" }}
-            onClick={ImageInformation}
+            onClick={imageGeolocation}
           ></img>
         </div>
       </div>

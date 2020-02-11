@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
 import "../../src/Homepage.css";
 
 import Star from "../images/star.png";
+import MapIcon from "../images/GoogleMapsLogo.png";
 
-const Homepage = () => {
+const Homepage = ({ google }) => {
   const [foods, setfoods] = useState([
     {
       id: 1,
@@ -26,9 +28,46 @@ const Homepage = () => {
     }
   ]);
 
+  const [showMap, setShowMap] = useState(false);
+
+  const [x, setX] = useState(3.1347584722222224);
+  const [y, setY] = useState(101.62975277777777);
+
+  const toggleOpenMap = () => {
+    setShowMap(!showMap);
+    console.log(showMap);
+  };
+
   return (
     <>
       <div id="foodie_background">FOODIBOO</div>
+      {showMap ? (
+        <>
+          <div className="blackout_background"></div>
+          <div className="google_map_container">
+            <div className="close_google_map_container">
+              <div className="close_google_map_button" onClick={toggleOpenMap}>
+                X
+              </div>
+            </div>
+            <div>
+              <Map
+                google={google}
+                zoom={17}
+                // style={mapStyles}
+                initialCenter={{ lat: x, lng: y }}
+                streetViewControl={false}
+                mapTypeControl={false}
+                zoomControl={false}
+                fullscreenControl={false}
+              >
+                <Marker position={{ lat: x, lng: y }} />
+              </Map>
+            </div>
+          </div>
+        </>
+      ) : null}
+
       <div className="filter_container">
         <div className="filter">Filter</div>
         <div className="sort">Sort</div>
@@ -52,7 +91,16 @@ const Homepage = () => {
                 </div>
               </div>
               <div className="food_info_distance_container">
-                <div className="food_distance"> 300m</div>
+                <div className="food_distance">
+                  <p>300m</p>
+                </div>
+                <div className="food_info_map_container">
+                  <img
+                    src={MapIcon}
+                    className="map_icon"
+                    onClick={toggleOpenMap}
+                  ></img>
+                </div>
               </div>
             </div>
           </div>
@@ -75,7 +123,16 @@ const Homepage = () => {
                 </div>
               </div>
               <div className="food_info_distance_container">
-                <div className="food_distance"> 300m</div>
+                <div className="food_distance">
+                  <p>300m</p>
+                </div>
+                <div className="food_info_map_container">
+                  <img
+                    src={MapIcon}
+                    className="map_icon"
+                    onClick={toggleOpenMap}
+                  ></img>
+                </div>
               </div>
             </div>
           </div>
@@ -87,4 +144,8 @@ const Homepage = () => {
     </>
   );
 };
-export default Homepage;
+// export default Homepage;
+
+export default GoogleApiWrapper({
+  apiKey: "AIzaSyDctpk36CsKzJFeEU6Fev5H8tM1Ls2b15Q"
+})(Homepage);
