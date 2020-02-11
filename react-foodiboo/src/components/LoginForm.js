@@ -15,49 +15,27 @@ const LoginForm = ({ toggleForm, closeModal, setLoggedIn }) => {
     console.log(username, password);
     axios({
       method: "post",
-      url: "https://insta.nextacademy.com/api/v1/login",
+      url: "https://foodiboo.herokuapp.com/api/v1/sessions/login",
       data: {
-        username: username,
-
+        name: username,
         password: password
       }
     })
       .then(response => {
         setLoggedIn(true);
         console.log(response.data);
-        localStorage.setItem("username", response.data.user.username);
-        localStorage.setItem("jwt", response.data.auth_token);
+        localStorage.setItem("username", response.data.user.name);
+        localStorage.setItem("jwt", response.data.token);
         localStorage.setItem("id", response.data.user.id);
-        localStorage.setItem(
-          "profile_picture",
-          response.data.user.profile_picture
-        );
+
         history.push("/Homepage");
 
         closeModal(true);
 
-        toast.info("Logged in successfully!", {
-          position: "bottom-center",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true
-        });
       })
 
       .catch(error => {
-        console.error(error.response);
-
-        const errorMessage = error.response.data.message.join(". ");
-        toast.error(errorMessage, {
-          position: "bottom-center",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true
-        });
+        console.error(error.response.data.err);
       });
   }
 
@@ -66,14 +44,14 @@ const LoginForm = ({ toggleForm, closeModal, setLoggedIn }) => {
       <Modal.Body>
         <Form id="login-form" onSubmit={submitsignin}>
           <Form.Group controlId="formBasicUserName">
-            <Form.Label>UserName</Form.Label>
+            <Form.Label>Username</Form.Label>
             <Form.Control
               value={username}
               onChange={e => {
                 setusername(e.target.value);
               }}
               type="UserName"
-              placeholder="Enter UserName"
+              placeholder="Enter your username"
             />
             <Form.Text className="text-muted"></Form.Text>
           </Form.Group>
@@ -85,12 +63,12 @@ const LoginForm = ({ toggleForm, closeModal, setLoggedIn }) => {
                 setpassword(e.target.value);
               }}
               type="Password"
-              placeholder="Password"
+              placeholder="Enter your password"
             />
           </Form.Group>
         </Form>
         <div>Need an account?</div>
-        <Button onClick={toggleForm}>Click here to signup</Button>
+        <Button onClick={toggleForm}>Sign Up</Button>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={closeModal}>

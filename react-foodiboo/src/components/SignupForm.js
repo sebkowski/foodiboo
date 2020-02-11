@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { Modal, Button, Form, ModalBody } from "react-bootstrap";
 
-const SignupForm = ({ closeModal, setLoggedIn, loggedIn }) => {
+const SignupForm = ({ closeModal, setLoggedIn, loggedIn, setShowLogin, setShowMenu, toggleForm }) => {
   const [username, setusername] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -14,51 +14,38 @@ const SignupForm = ({ closeModal, setLoggedIn, loggedIn }) => {
   const [usernameValid, setUsernameValid] = useState(true);
   let history = useHistory();
 
-  function submitsignup() {
-    setIsLoading(true);
+  function submitsignup(e) {
+    e.preventDefault()
     axios({
       method: "POST",
-      url: "https://insta.nextacademy.com/api/v1/users/",
+      url: "https://foodiboo.herokuapp.com/api/v1/users/sign_up",
       data: {
-        username: `${username}`,
+        name: `${username}`,
         email: `${email}`,
-        password: `${password}`
+        password: `${password}`,
+        confirm_password: `${confirmpassword}`
       }
     })
       .then(response => {
-        setLoggedIn(true);
-        localStorage.setItem("jwt", response.data.auth_token);
-        localStorage.setItem("id", response.data.user.id);
-        localStorage.setItem("username", response.data.user.username);
-        localStorage.setItem(
-          "profile_picture",
-          response.data.user.profile_picture
-        );
-        setIsLoading(false);
-        closeModal(true);
-        history.push("/Homepage");
-        toast.info("Logged in successfully!", {
-          position: "bottom-center",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true
-        });
+        console.log(response.data)
+        // setShowMenu(false)
+        closeModal()
       })
 
       .catch(error => {
-        console.error(error.response);
-        setIsLoading(false);
-        const errorMessage = error.response.data.message.join(". ");
-        toast.error(errorMessage, {
-          position: "bottom-center",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true
-        });
+        console.log(error.response)
+        // console.error(error.response);
+        // setIsLoading(false);
+        // const errorMessage = error.response.data.message.join(". ");
+        // const errorMessage = error.response.data.err.join(". ");
+        // toast.error(errorMessage, {
+        //   position: "bottom-center",
+        //   autoClose: 4000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true
+        // });
       });
   }
 
@@ -89,8 +76,10 @@ const SignupForm = ({ closeModal, setLoggedIn, loggedIn }) => {
       <ModalBody>
         <Form id="signup-form" onSubmit={submitsignup}>
           <Form.Group controlId="formBasicUserName">
+            <div>
+            </div>  
             <Form.Label>
-              UserName{" "}
+              Username{" "}
               {username.length < 6 ? null : usernameValid ? (
                 <span className="text-success">is available</span>
               ) : (
@@ -107,19 +96,19 @@ const SignupForm = ({ closeModal, setLoggedIn, loggedIn }) => {
                 setusername(e.target.value);
               }}
               type="UserName"
-              placeholder="Enter UserName"
+              placeholder="Enter a username"
             />
             <Form.Text className="text-muted"></Form.Text>
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>Email Address</Form.Label>
             <Form.Control
               value={email}
               onChange={e => {
                 setemail(e.target.value);
               }}
               type="email"
-              placeholder="Enter email"
+              placeholder="Enter an email address"
             />
             <Form.Text className="text-muted"></Form.Text>
           </Form.Group>
@@ -139,7 +128,7 @@ const SignupForm = ({ closeModal, setLoggedIn, loggedIn }) => {
                 setpassword(e.target.value);
               }}
               type="Password"
-              placeholder="Password"
+              placeholder="Enter password"
             />
           </Form.Group>
           <Form.Group controlId="formBasicConfirmPassword">
@@ -150,7 +139,7 @@ const SignupForm = ({ closeModal, setLoggedIn, loggedIn }) => {
                 setconfirmpassword(e.target.value);
               }}
               type="Password"
-              placeholder="Confirm Password"
+              placeholder="Confirm password"
             />
           </Form.Group>
         </Form>

@@ -33,7 +33,8 @@ const Navbar = ({ loggedIn, setLoggedIn }) => {
           closeModal={closeModal}
           openModal={openModal}
           showLogin={showLogin}
-          setShowLogin={setShowLogin}
+          setShowLogin={setShowLogin} 
+          setShowMenu = {setShowMenu}
         />
       )}
       <nav id="navbar">
@@ -41,7 +42,7 @@ const Navbar = ({ loggedIn, setLoggedIn }) => {
           <span
             onClick={() => {
               setlogin(true);
-              setShowLogin(false);
+              setShowLogin(true);
             }}
             style={{
               display: "inlineBlock",
@@ -53,7 +54,7 @@ const Navbar = ({ loggedIn, setLoggedIn }) => {
               color: "white"
             }}
           >
-            Sign Up
+            Sign In
           </span>
         )}
 
