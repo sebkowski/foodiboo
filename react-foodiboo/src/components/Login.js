@@ -10,14 +10,15 @@ const Login = ({
   loggedIn,
   setLoggedIn,
   showLogin,
-  setShowLogin
+  setShowLogin,
+  setShowMenu
 }) => {
   const toggleForm = () => setShowLogin(!showLogin);
   return (
     <>
       <Modal show={show} onHide={closeModal}>
         <Modal.Header closeButton>
-          <Modal.Title>{showLogin ? "Login Page" : "Signup Page"}</Modal.Title>
+          <Modal.Title>{showLogin ? "Login" : "Sign Up"}</Modal.Title>
         </Modal.Header>
         {showLogin ? (
           <LoginForm
@@ -27,10 +28,12 @@ const Login = ({
           />
         ) : (
           <SignUpForm
-            
+            setShowLogin = {setShowLogin}
             closeModal={closeModal}
             loggedIn={loggedIn}
             setLoggedIn={setLoggedIn}
+            setShowMenu = {setShowMenu}
+            toggleForm= {toggleForm}
           />
         )}
       </Modal>
