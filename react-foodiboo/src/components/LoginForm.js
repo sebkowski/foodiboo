@@ -28,10 +28,9 @@ const LoginForm = ({ toggleForm, closeModal, setLoggedIn }) => {
         localStorage.setItem("jwt", response.data.token);
         localStorage.setItem("id", response.data.user.id);
 
-        history.push("/Homepage");
+        history.push("/");
 
         closeModal(true);
-
       })
 
       .catch(error => {
