@@ -12,7 +12,6 @@ const LoginForm = ({ toggleForm, closeModal, setLoggedIn }) => {
   function submitsignin(e) {
     e.preventDefault();
 
-    console.log(username, password);
     axios({
       method: "post",
       url: "https://foodiboo.herokuapp.com/api/v1/sessions/login",
@@ -25,7 +24,7 @@ const LoginForm = ({ toggleForm, closeModal, setLoggedIn }) => {
         setLoggedIn(true);
         console.log(response.data);
         localStorage.setItem("username", response.data.user.name);
-        localStorage.setItem("jwt", response.data.token);
+        localStorage.setItem("JWT", response.data.token);
         localStorage.setItem("id", response.data.user.id);
 
         history.push("/");

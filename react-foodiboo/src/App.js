@@ -12,7 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(
-    localStorage.getItem("jwt") !== null
+    localStorage.getItem("JWT") !== null
   );
   const [foods, setfoods] = useState([
     {

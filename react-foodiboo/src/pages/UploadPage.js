@@ -91,7 +91,7 @@ const UploadPage = ({ google }) => {
 
   //   const SubmitImage = e => {
   //     e.preventDefault();
-  //     let JWT = localStorage.getItem("jwt");
+  //     let JWT = localStorage.getItem("JWT");
   //     let formData = new FormData();
 
   //     formData.append("image", imageFile);
