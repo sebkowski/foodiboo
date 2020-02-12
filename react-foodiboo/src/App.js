@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar.js";
 import "./App.css";
 import "./Homepage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import StarRating from "./components/StarRating.js";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(
@@ -56,7 +57,15 @@ function App() {
         </Route>
         <Route exact path="/uploadPage">
           <UploadPage />
+          
         </Route>
+        <Route exact path="/StarRating">
+        
+        
+          <StarRating/>
+          
+        </Route>        
+
         {/* <Route exact path="/user/:id">
           <UserProfilePage />
         </Route> */}
