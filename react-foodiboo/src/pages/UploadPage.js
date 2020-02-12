@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import EXIF from "exif-js";
 import dms2dec from "dms2dec";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import "../../src/UploadPage.css";
+import ExifOrientationImg from "react-exif-orientation-img";
 
 const UploadPage = ({
   google,
@@ -24,6 +26,7 @@ const UploadPage = ({
       let lattitudeRef = EXIF.getTag(img, "GPSLatitudeRef");
       let longtitude = EXIF.getTag(img, "GPSLongitude");
       let longtitudeRef = EXIF.getTag(img, "GPSLongitudeRef");
+      let test = EXIF.getTag(img, "Orientation");
 
       // GEO LOCATION DMS FORMAT
       // let lattitudePos = `${parseFloat(lattitude[0])}°${parseFloat(
@@ -60,6 +63,7 @@ const UploadPage = ({
       // console.log(longtitudeDD);
       setLat(lattitudeDD);
       setLngt(longtitudeDD);
+      console.log(test);
     });
   };
 
@@ -131,15 +135,17 @@ const UploadPage = ({
             /> */}
 
       {previewImage ? (
-        <img
-          src={previewImage}
-          alt="previewimg"
-          height="100%"
-          width="100%"
-          style={{ transform: "rotate(90deg)" }}
-          onClick={imageGeolocation}
-        />
-      ) : null}
+        <div className="upload_image_container">
+          <ExifOrientationImg
+            className="upload_image"
+            src={previewImage}
+            alt="previewimg"
+            onClick={imageGeolocation}
+          />
+        </div>
+      ) : (
+        <div className="upload_image_container"></div>
+      )}
     </>
   );
 };

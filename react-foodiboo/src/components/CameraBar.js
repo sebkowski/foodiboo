@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import "../ressources/CameraBar.css";
+import "../../src/CameraBar.css";
 import { Link } from "react-router-dom";
-import EXIF from "exif-js";
-import dms2dec from "dms2dec";
 
 const CameraBar = ({
   imageFile,
