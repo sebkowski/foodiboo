@@ -1,22 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import EXIF from "exif-js";
 import dms2dec from "dms2dec";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
-
-import Test from "../images/test.JPG";
-import Test2 from "../images/test2.jpg";
-
-// import {
-//   Button,
-//   Form,
-//   Card,
-//   FormGroup,
-//   FormControl,
-//   input
-// } from "react-bootstrap";
-
-// import axios from "axios";
-// import { toast } from "react-toastify";
 
 const UploadPage = ({
   google,
@@ -27,32 +12,13 @@ const UploadPage = ({
 }) => {
   let fileInput = React.createRef();
 
-  // const [imageFile, setImageFile] = useState(null);
-  // const [HandleFile, setHandleFile] = useState();
-  // const [message, setMessage] = useState("");
-  // const [previewImage, setPreviewImage] = useState(null);
+  const [lat, setLat] = useState(null);
+  const [lngt, setLngt] = useState(null);
 
-  const [x, setX] = useState(3.1347584722222224);
-  const [y, setY] = useState(101.62975277777777);
-
-  const [showMap, setShowMap] = useState(false);
-
-  const openMap = () => {
-    setShowMap(!showMap);
-    console.log(showMap);
-  };
-
-  // const mapStyles = {
-  //   // position: "fixed",
-  //   // transform: "translate(-50%,-50%)",
-  //   width: "500px",
-  //   height: "500px",
-  //   margin: "20vh 0 0 10vw",
-  //   border: "1px solid black"
-  // };
+  // const [showMap, setShowMap] = useState(false);
 
   const imageGeolocation = e => {
-    const img = e.target;
+    const img = e;
     EXIF.getData(img, function() {
       let lattitude = EXIF.getTag(img, "GPSLatitude");
       let lattitudeRef = EXIF.getTag(img, "GPSLatitudeRef");
@@ -90,10 +56,15 @@ const UploadPage = ({
       // console.log(geoPositionDD);
       let lattitudeDD = geoPositionDD[0];
       let longtitudeDD = geoPositionDD[1];
-      console.log(lattitudeDD);
-      console.log(longtitudeDD);
+      // console.log(lattitudeDD);
+      // console.log(longtitudeDD);
+      setLat(lattitudeDD);
+      setLngt(longtitudeDD);
     });
   };
+
+  console.log(lat);
+  console.log(lngt);
 
   //   const SubmitImage = e => {
   //     e.preventDefault();
@@ -127,26 +98,15 @@ const UploadPage = ({
   //         console.log(error.response);
   //       });
   //   };
+
+  useEffect(() => {
+    if (previewImage !== null) {
+      // console.log();
+      imageGeolocation(imageFile);
+    }
+  }, [previewImage]);
   return (
     <>
-      {/* <button
-        style={{
-          // borderRadius: "50%",
-          // padding: "1em",
-          height: "65px",
-          width: "65px",
-          position: "absolute",
-          transform: "translate(-50%,-50%)",
-          bottom: "0%",
-          left: "50%"
-        }}
-        onClick={() => {
-          fileInput.current.click();
-        }}
-      ></button> */}
-
-      {/* <Form onSubmit={SubmitImage}> */}
-
       {/* <CustomInput
               type="file"
               id="exampleCustomFileBrowser"
@@ -169,20 +129,6 @@ const UploadPage = ({
                 setPreviewImage(URL.createObjectURL(e.target.files[0]));
               }}
             /> */}
-      {/* <input
-        ref={fileInput}
-        accept="image/*"
-        capture
-        style={{ width: "0%" }}
-        type="file"
-        className="form-control-file"
-        name="image-file"
-        multiple={false}
-        onChange={e => {
-          setImageFile(e.target.files[0]);
-          setPreviewImage(URL.createObjectURL(e.target.files[0]));
-        }}
-      /> */}
 
       {previewImage ? (
         <img
@@ -191,6 +137,7 @@ const UploadPage = ({
           height="100%"
           width="100%"
           style={{ transform: "rotate(90deg)" }}
+          onClick={imageGeolocation}
         />
       ) : null}
     </>

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../ressources/CameraBar.css";
 import { Link } from "react-router-dom";
+import EXIF from "exif-js";
+import dms2dec from "dms2dec";
 
 const CameraBar = ({
   imageFile,
@@ -10,11 +12,11 @@ const CameraBar = ({
 }) => {
   let fileInput = React.createRef();
   const saveImage = e => {
-    // console.log(e.target.files[0]);
     setImageFile(e.target.files[0]);
     console.log(URL.createObjectURL(e.target.files[0]));
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
   };
+
   return (
     <>
       <div id="camera_bar">
@@ -35,17 +37,8 @@ const CameraBar = ({
           className="form-control-file"
           name="image-file"
           multiple={false}
-          // onChange={e => {
-          //   console.log(e.target.files[0]);
-          //   setImageFile(e.target.files[0]);
-          //   // setPreviewImage(URL.createObjectURL(e.target.files[0]));
-          // }}
           onChange={saveImage}
         />
-
-        {/* {previewImage ? (
-          <img src={previewImage} alt="previewimg" height="100%" width="100%" />
-        ) : null} */}
       </div>
     </>
   );
