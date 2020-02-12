@@ -6,25 +6,31 @@ import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import Test from "../images/test.JPG";
 import Test2 from "../images/test2.jpg";
 
-import {
-  Button,
-  Form,
-  Card,
-  FormGroup,
-  FormControl,
-  input
-} from "react-bootstrap";
+// import {
+//   Button,
+//   Form,
+//   Card,
+//   FormGroup,
+//   FormControl,
+//   input
+// } from "react-bootstrap";
 
 // import axios from "axios";
 // import { toast } from "react-toastify";
 
-const UploadPage = ({ google }) => {
+const UploadPage = ({
+  google,
+  imageFile,
+  setImageFile,
+  previewImage,
+  setPreviewImage
+}) => {
   let fileInput = React.createRef();
 
-  const [imageFile, setImageFile] = useState(null);
+  // const [imageFile, setImageFile] = useState(null);
   // const [HandleFile, setHandleFile] = useState();
-  const [message, setMessage] = useState("");
-  const [previewImage, setPreviewImage] = useState(null);
+  // const [message, setMessage] = useState("");
+  // const [previewImage, setPreviewImage] = useState(null);
 
   const [x, setX] = useState(3.1347584722222224);
   const [y, setY] = useState(101.62975277777777);
@@ -36,14 +42,14 @@ const UploadPage = ({ google }) => {
     console.log(showMap);
   };
 
-  const mapStyles = {
-    // position: "fixed",
-    // transform: "translate(-50%,-50%)",
-    width: "500px",
-    height: "500px",
-    margin: "20vh 0 0 10vw",
-    border: "1px solid black"
-  };
+  // const mapStyles = {
+  //   // position: "fixed",
+  //   // transform: "translate(-50%,-50%)",
+  //   width: "500px",
+  //   height: "500px",
+  //   margin: "20vh 0 0 10vw",
+  //   border: "1px solid black"
+  // };
 
   const imageGeolocation = e => {
     const img = e.target;
@@ -123,69 +129,25 @@ const UploadPage = ({ google }) => {
   //   };
   return (
     <>
-      <button style={{ marginTop: "15vh" }} onClick={openMap}>
-        OPEN MAP
-      </button>
-      {showMap ? (
-        // <div
-        //   style={{
-        //     backgroundColor: "black",
-        //     width: "100vw",
-        //     height: "100vh",
-        //     position: "fixed",
-        //     opacity: "0.5"
-        //   }}
-        // >
-        <Map
-          google={google}
-          zoom={17}
-          style={mapStyles}
-          initialCenter={{ lat: x, lng: y }}
-          streetViewControl={false}
-          mapTypeControl={false}
-          zoomControl={false}
-          fullscreenControl={false}
-        >
-          <Marker position={{ lat: x, lng: y }} />
-        </Map>
-      ) : // </div>
-      null}
+      {/* <button
+        style={{
+          // borderRadius: "50%",
+          // padding: "1em",
+          height: "65px",
+          width: "65px",
+          position: "absolute",
+          transform: "translate(-50%,-50%)",
+          bottom: "0%",
+          left: "50%"
+        }}
+        onClick={() => {
+          fileInput.current.click();
+        }}
+      ></button> */}
 
-      <div style={{ display: "none" }}>
-        <div
-          style={{
-            backgroundColor: "lightblue",
-            height: "100vh",
+      {/* <Form onSubmit={SubmitImage}> */}
 
-            display: "flex"
-          }}
-        >
-          <Card
-            style={{
-              width: "100%",
-              maxHeight: "100%",
-
-              marginTop: "85px"
-            }}
-          >
-            <button
-              style={{
-                borderRadius: "50%",
-                padding: "1em",
-                height: "65px",
-                width: "65px",
-                position: "absolute",
-                bottom: "50px",
-                right: "50vw"
-              }}
-              onClick={() => {
-                fileInput.current.click();
-              }}
-            ></button>
-            {/* <Form onSubmit={SubmitImage}> */}
-            <Form>
-              <FormGroup>
-                {/* <CustomInput
+      {/* <CustomInput
               type="file"
               id="exampleCustomFileBrowser"
               name="image-file"
@@ -195,7 +157,7 @@ const UploadPage = ({ google }) => {
                 setPreviewImage(URL.createObjectURL(e.target.files[0]));
               }}
             /> */}
-                {/* <input
+      {/* <input
               style={{display: 'none'}}
               ref={fileInput}
               capture
@@ -207,61 +169,30 @@ const UploadPage = ({ google }) => {
                 setPreviewImage(URL.createObjectURL(e.target.files[0]));
               }}
             /> */}
-                <input
-                  accept="image/*"
-                  capture
-                  style={{ width: "0%" }}
-                  type="file"
-                  className="form-control-file"
-                  name="image-file"
-                  multiple={false}
-                  onChange={e => {
-                    setImageFile(e.target.files[0]);
-                    setPreviewImage(URL.createObjectURL(e.target.files[0]));
-                  }}
-                />
-              </FormGroup>
-            </Form>
-            <div className="card">
-              {previewImage ? (
-                <img
-                  src={previewImage}
-                  alt="previewimg"
-                  height="100%"
-                  width="100%"
-                  style={{ transform: "rotate(90deg)" }}
-                />
-              ) : (
-                <div style={{ position: "absolute", right: "50vw" }}>
-                  {message ? message : "Take a picture!"}
-                </div>
-              )}
-            </div>
-            <Button
-              type="submit"
-              color="primary"
-              style={{
-                position: "absolute",
-                right: "50px",
-                bottom: "50px",
-                borderRadius: "50%"
-              }}
-            >
-              <span>&#10003;</span>
-            </Button>
-          </Card>
-          <img
-            src={Test}
-            style={{ width: "250px", height: "250px" }}
-            onClick={imageGeolocation}
-          ></img>
-          <img
-            src={Test2}
-            style={{ width: "250px", height: "250px" }}
-            onClick={imageGeolocation}
-          ></img>
-        </div>
-      </div>
+      {/* <input
+        ref={fileInput}
+        accept="image/*"
+        capture
+        style={{ width: "0%" }}
+        type="file"
+        className="form-control-file"
+        name="image-file"
+        multiple={false}
+        onChange={e => {
+          setImageFile(e.target.files[0]);
+          setPreviewImage(URL.createObjectURL(e.target.files[0]));
+        }}
+      /> */}
+
+      {previewImage ? (
+        <img
+          src={previewImage}
+          alt="previewimg"
+          height="100%"
+          width="100%"
+          style={{ transform: "rotate(90deg)" }}
+        />
+      ) : null}
     </>
   );
 };

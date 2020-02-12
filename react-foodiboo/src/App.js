@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import UploadPage from "./pages/UploadPage.js";
 import Homepage from "./pages/Homepage.js";
 import Navbar from "./components/Navbar.js";
+import CameraBar from "./components/CameraBar.js";
 
 import "./App.css";
 import "./Homepage.css";
@@ -15,6 +16,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem("JWT") !== null
   );
+  const [imageFile, setImageFile] = useState({});
+  const [previewImage, setPreviewImage] = useState(null);
   const [foods, setfoods] = useState([
     {
       id: 1,
@@ -49,22 +52,28 @@ function App() {
         draggable
         pauseOnHover
       />
-      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+      <Navbar
+        loggedIn={loggedIn}
+        setLoggedIn={setLoggedIn}
+        previewImage={previewImage}
+        setPreviewImage={setPreviewImage}
+      />
 
       <Switch>
         <Route exact path="/">
           <Homepage />
         </Route>
         <Route exact path="/uploadPage">
-          <UploadPage />
-          
+          <UploadPage
+            imageFile={imageFile}
+            setImageFile={setImageFile}
+            previewImage={previewImage}
+            setPreviewImage={setPreviewImage}
+          />
         </Route>
         <Route exact path="/StarRating">
-        
-        
-          <StarRating/>
-          
-        </Route>        
+          <StarRating />
+        </Route>
 
         {/* <Route exact path="/user/:id">
           <UserProfilePage />
@@ -76,6 +85,12 @@ function App() {
           <UploadPage />
         </Route> */}
       </Switch>
+      <CameraBar
+        imageFile={imageFile}
+        setImageFile={setImageFile}
+        previewImage={previewImage}
+        setPreviewImage={setPreviewImage}
+      />
     </>
   );
 }
