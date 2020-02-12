@@ -163,8 +163,8 @@ const UploadPage = ({
     </>
   );
 };
-// export default UploadPage;
+export default UploadPage;
 
-export default GoogleApiWrapper({
-  apiKey: "AIzaSyDctpk36CsKzJFeEU6Fev5H8tM1Ls2b15Q"
-})(UploadPage);
+// export default GoogleApiWrapper({
+//   apiKey: "AIzaSyDctpk36CsKzJFeEU6Fev5H8tM1Ls2b15Q"
+// })(UploadPage);

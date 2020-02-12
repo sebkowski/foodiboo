@@ -10,20 +10,19 @@ const div1style = {
   // border:"solid",
 };
 
-const TestInput = props => {
-  const [y1, setY1] = useState(100);
-  const [y2, setY2] = useState(100);
-  const [y3, setY3] = useState(100);
-  const [y4, setY4] = useState(100);
-  const [y5, setY5] = useState(100);
-
-  const {
-    itemRef,
-    itemPosition,
-    active,
-    passivePosition,
-    activePosition
-  } = props;
+const TestInput = ({
+    activePosition,
+    y1,
+    y2,
+    y3,
+    y4,
+    y5,
+    setY1,
+    setY2,
+    setY3,
+    setY4,
+    setY5
+}) => {
 
   const getScore = val => {
     return Math.floor(Math.abs((val / 300) * 5 - 5));
@@ -73,26 +72,26 @@ const TestInput = props => {
 }
 
   useEffect(() => {
-    if (parseInt(activePosition.x) > 25 && parseInt(activePosition.x) < 50) {
+    if (parseInt(activePosition.x) > 25 && (parseInt(activePosition.x) < 50) && (parseInt(activePosition.y)<300)) {
       lockposition1();
     }
-    if (parseInt(activePosition.x) > 75 && parseInt(activePosition.x) < 100) {
+    if (parseInt(activePosition.x) > 75 && (parseInt(activePosition.x) < 100) && (parseInt(activePosition.y)<300)) {
       lockposition2();
     }
-    if (parseInt(activePosition.x) > 125 && parseInt(activePosition.x) < 150) {
+    if (parseInt(activePosition.x) > 125 && (parseInt(activePosition.x) < 150) && (parseInt(activePosition.y)<300)){
       lockposition3();
     }
-    if (parseInt(activePosition.x) > 175 && parseInt(activePosition.x) < 200) {
+    if (parseInt(activePosition.x) > 175 && (parseInt(activePosition.x) < 200) && (parseInt(activePosition.y)<300)) {
       lockposition4();
     }
-    if (parseInt(activePosition.x) > 225 && parseInt(activePosition.x) < 250) {
+    if (parseInt(activePosition.x) > 225 && (parseInt(activePosition.x) < 250) && (parseInt(activePosition.y)<300)) {
       lockposition5();
     }
   });
 
   return (
     <>
-      <svg height="300" width="390">
+      <svg height="300" width="300">
         <polyline
           points={`25,${parseInt(y1)} 50,${parseInt(
             y1
