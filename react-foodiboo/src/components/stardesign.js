@@ -7,6 +7,8 @@ const stardesign =  ({
     score3,
     score4,
     score5,
+    height = 244,
+    width = 254
 }) => {
 
     
@@ -15,7 +17,7 @@ const stardesign =  ({
       };
     
     return (
-        <svg height="244" width="254" >
+        <svg height={height} width={width} viewBox="0 0 250 500"  >
         <polyline stroke-linejoin="round"
         points={`100,100 150,100 125,0 100,100 `}
         style={{ fill: "white", stroke: "black", strokeWidth: 3 }}
