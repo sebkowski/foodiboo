@@ -1,57 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import EXIF from "exif-js";
 import dms2dec from "dms2dec";
-import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import ExifOrientationImg from "react-exif-orientation-img";
+import { Link } from "react-router-dom";
 
-import Test from "../images/test.JPG";
-import Test2 from "../images/test2.jpg";
+import "../../src/UploadPage.css";
 
-import {
-  Button,
-  Form,
-  Card,
-  FormGroup,
-  FormControl,
-  input
-} from "react-bootstrap";
+import arrow from "../../src/images/arrow.png";
+import close from "../../src/images/close.png";
 
-// import axios from "axios";
-// import { toast } from "react-toastify";
-
-const UploadPage = ({ google }) => {
+const UploadPage = ({
+  google,
+  imageFile,
+  setImageFile,
+  previewImage,
+  setPreviewImage
+}) => {
   let fileInput = React.createRef();
 
-  const [imageFile, setImageFile] = useState(null);
-  // const [HandleFile, setHandleFile] = useState();
-  const [message, setMessage] = useState("");
-  const [previewImage, setPreviewImage] = useState(null);
+  const [lat, setLat] = useState(null);
+  const [lngt, setLngt] = useState(null);
 
-  const [x, setX] = useState(3.1347584722222224);
-  const [y, setY] = useState(101.62975277777777);
-
-  const [showMap, setShowMap] = useState(false);
-
-  const openMap = () => {
-    setShowMap(!showMap);
-    console.log(showMap);
-  };
-
-  const mapStyles = {
-    // position: "fixed",
-    // transform: "translate(-50%,-50%)",
-    width: "500px",
-    height: "500px",
-    margin: "20vh 0 0 10vw",
-    border: "1px solid black"
-  };
+  // const [showMap, setShowMap] = useState(false);
 
   const imageGeolocation = e => {
-    const img = e.target;
+    const img = e;
     EXIF.getData(img, function() {
       let lattitude = EXIF.getTag(img, "GPSLatitude");
       let lattitudeRef = EXIF.getTag(img, "GPSLatitudeRef");
       let longtitude = EXIF.getTag(img, "GPSLongitude");
       let longtitudeRef = EXIF.getTag(img, "GPSLongitudeRef");
+      let test = EXIF.getTag(img, "Orientation");
 
       // GEO LOCATION DMS FORMAT
       // let lattitudePos = `${parseFloat(lattitude[0])}°${parseFloat(
@@ -84,10 +64,16 @@ const UploadPage = ({ google }) => {
       // console.log(geoPositionDD);
       let lattitudeDD = geoPositionDD[0];
       let longtitudeDD = geoPositionDD[1];
-      console.log(lattitudeDD);
-      console.log(longtitudeDD);
+      // console.log(lattitudeDD);
+      // console.log(longtitudeDD);
+      setLat(lattitudeDD);
+      setLngt(longtitudeDD);
+      console.log(test);
     });
   };
+
+  console.log(lat);
+  console.log(lngt);
 
   //   const SubmitImage = e => {
   //     e.preventDefault();
@@ -121,71 +107,23 @@ const UploadPage = ({ google }) => {
   //         console.log(error.response);
   //       });
   //   };
+
+  useEffect(() => {
+    if (previewImage !== null) {
+      // console.log();
+      imageGeolocation(imageFile);
+    }
+  }, [previewImage]);
   return (
     <>
-      <button style={{ marginTop: "15vh" }} onClick={openMap}>
-        OPEN MAP
-      </button>
-      {showMap ? (
-        // <div
-        //   style={{
-        //     backgroundColor: "black",
-        //     width: "100vw",
-        //     height: "100vh",
-        //     position: "fixed",
-        //     opacity: "0.5"
-        //   }}
-        // >
-        <Map
-          google={google}
-          zoom={17}
-          style={mapStyles}
-          initialCenter={{ lat: x, lng: y }}
-          streetViewControl={false}
-          mapTypeControl={false}
-          zoomControl={false}
-          fullscreenControl={false}
-        >
-          <Marker position={{ lat: x, lng: y }} />
-        </Map>
-      ) : // </div>
-      null}
+      <div className="close_button_container">
+        <Link to="/">
+          <div className="x_button">X</div>
+        </Link>
+        {/* <img src={close} className="close_button"></img> */}
+      </div>
 
-      <div style={{ display: "none" }}>
-        <div
-          style={{
-            backgroundColor: "lightblue",
-            height: "100vh",
-
-            display: "flex"
-          }}
-        >
-          <Card
-            style={{
-              width: "100%",
-              maxHeight: "100%",
-
-              marginTop: "85px"
-            }}
-          >
-            <button
-              style={{
-                borderRadius: "50%",
-                padding: "1em",
-                height: "65px",
-                width: "65px",
-                position: "absolute",
-                bottom: "50px",
-                right: "50vw"
-              }}
-              onClick={() => {
-                fileInput.current.click();
-              }}
-            ></button>
-            {/* <Form onSubmit={SubmitImage}> */}
-            <Form>
-              <FormGroup>
-                {/* <CustomInput
+      {/* <CustomInput
               type="file"
               id="exampleCustomFileBrowser"
               name="image-file"
@@ -195,7 +133,7 @@ const UploadPage = ({ google }) => {
                 setPreviewImage(URL.createObjectURL(e.target.files[0]));
               }}
             /> */}
-                {/* <input
+      {/* <input
               style={{display: 'none'}}
               ref={fileInput}
               capture
@@ -207,61 +145,21 @@ const UploadPage = ({ google }) => {
                 setPreviewImage(URL.createObjectURL(e.target.files[0]));
               }}
             /> */}
-                <input
-                  accept="image/*"
-                  capture
-                  style={{ width: "0%" }}
-                  type="file"
-                  className="form-control-file"
-                  name="image-file"
-                  multiple={false}
-                  onChange={e => {
-                    setImageFile(e.target.files[0]);
-                    setPreviewImage(URL.createObjectURL(e.target.files[0]));
-                  }}
-                />
-              </FormGroup>
-            </Form>
-            <div className="card">
-              {previewImage ? (
-                <img
-                  src={previewImage}
-                  alt="previewimg"
-                  height="100%"
-                  width="100%"
-                  style={{ transform: "rotate(90deg)" }}
-                />
-              ) : (
-                <div style={{ position: "absolute", right: "50vw" }}>
-                  {message ? message : "Take a picture!"}
-                </div>
-              )}
-            </div>
-            <Button
-              type="submit"
-              color="primary"
-              style={{
-                position: "absolute",
-                right: "50px",
-                bottom: "50px",
-                borderRadius: "50%"
-              }}
-            >
-              <span>&#10003;</span>
-            </Button>
-          </Card>
-          <img
-            src={Test}
-            style={{ width: "250px", height: "250px" }}
+
+      {previewImage ? (
+        <div className="upload_image_container">
+          <ExifOrientationImg
+            className="upload_image"
+            src={previewImage}
+            alt="previewimg"
             onClick={imageGeolocation}
-          ></img>
-          <img
-            src={Test2}
-            style={{ width: "250px", height: "250px" }}
-            onClick={imageGeolocation}
-          ></img>
+          />
+          <div className="arrow_container">
+            {/* <div className="meal_container">Enjoy your meal</div> */}
+            {/* <img src={arrow} className="arrow_icon"></img> */}
+          </div>
         </div>
-      </div>
+      ) : null}
     </>
   );
 };

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "../../src/Navbar.css";
 import { toast } from "react-toastify";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Route, useLocation } from "react-router-dom";
 import Login from "./Login";
 import axios from 'axios';
 
 const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
   let history = useHistory();
+  let location = useLocation();
+
   const [login, setlogin] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
@@ -77,6 +79,7 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
           setShowMenu={setShowMenu}
         />
       )}
+<<<<<<< HEAD
       <nav id="navbar">
 
         <form onSubmit={searchFoods}><input type="text" placeholder="Search Food..." id="search_bar" value={searchBoxValue} onChange={e => {setSearchBoxValue(e.target.value)}} /></form>
@@ -85,6 +88,21 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
       <div className={showMenu ? "hamburger active" : "hamburger"}>
         <div className="burger"></div>
       </div>
+=======
+      {location.pathname === "/UploadPage" ? null : (
+        <>
+          <nav id="navbar">
+            <input type="text" placeholder="Search Food..." id="search_bar" />
+          </nav>
+
+          <div className="hamburger_clicker" onClick={toggleNav}></div>
+          <div className={showMenu ? "hamburger active" : "hamburger"}>
+            <div className="burger" onClick={toggleNav}></div>
+          </div>
+        </>
+      )}
+
+>>>>>>> 76f8e87c7a042bd78b2260c46ed3b80eb4b0c429
       <div
         id="hidden_container"
         style={{

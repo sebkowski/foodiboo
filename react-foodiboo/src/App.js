@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import UploadPage from "./pages/UploadPage.js";
 import Homepage from "./pages/Homepage.js";
 import Navbar from "./components/Navbar.js";
+import CameraBar from "./components/CameraBar.js";
 
 import "./App.css";
 import "./Homepage.css";
@@ -15,7 +16,13 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem("JWT") !== null
   );
+<<<<<<< HEAD
   const [foods, setFoods] = useState([
+=======
+  const [imageFile, setImageFile] = useState({});
+  const [previewImage, setPreviewImage] = useState(null);
+  const [foods, setfoods] = useState([
+>>>>>>> 76f8e87c7a042bd78b2260c46ed3b80eb4b0c429
     {
       id: 1,
       food_name: "Nasi Lemak",
@@ -49,22 +56,32 @@ function App() {
         draggable
         pauseOnHover
       />
+<<<<<<< HEAD
       <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} foods={foods} setFoods={setFoods} />
+=======
+      <Navbar
+        loggedIn={loggedIn}
+        setLoggedIn={setLoggedIn}
+        previewImage={previewImage}
+        setPreviewImage={setPreviewImage}
+      />
+>>>>>>> 76f8e87c7a042bd78b2260c46ed3b80eb4b0c429
 
       <Switch>
         <Route exact path="/">
           <Homepage foods={foods} setFoods={setFoods}/>
         </Route>
         <Route exact path="/uploadPage">
-          <UploadPage />
-          
+          <UploadPage
+            imageFile={imageFile}
+            setImageFile={setImageFile}
+            previewImage={previewImage}
+            setPreviewImage={setPreviewImage}
+          />
         </Route>
         <Route exact path="/StarRating">
-        
-        
-          <StarRating/>
-          
-        </Route>        
+          <StarRating />
+        </Route>
 
         {/* <Route exact path="/user/:id">
           <UserProfilePage />
@@ -76,6 +93,12 @@ function App() {
           <UploadPage />
         </Route> */}
       </Switch>
+      <CameraBar
+        imageFile={imageFile}
+        setImageFile={setImageFile}
+        previewImage={previewImage}
+        setPreviewImage={setPreviewImage}
+      />
     </>
   );
 }
