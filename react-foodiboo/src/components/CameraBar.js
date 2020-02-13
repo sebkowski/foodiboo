@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import "../../src/CameraBar.css";
-
 import cameraIcon from "../../src/images/camera.png";
 
 const CameraBar = ({

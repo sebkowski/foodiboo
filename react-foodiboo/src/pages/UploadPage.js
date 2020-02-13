@@ -5,8 +5,6 @@ import dms2dec from "dms2dec";
 import ExifOrientationImg from "react-exif-orientation-img";
 import { Link } from "react-router-dom";
 
-import "../../src/UploadPage.css";
-
 import arrow from "../../src/images/arrow.png";
 import close from "../../src/images/close.png";
 
