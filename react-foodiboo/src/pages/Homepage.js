@@ -9,6 +9,7 @@ import MapIcon from "../images/GoogleMapsLogo.png";
 import test from "../images/test.JPG";
 import test2 from "../images/test2.jpg";
 import test3 from "../images/Test3.jpg";
+import Stardesign from "../components/stardesign";
 
 const Homepage = ({ google, foods, setFoods }) => {
   // const [foods, setfoods] = useState([
@@ -203,7 +204,7 @@ const Homepage = ({ google, foods, setFoods }) => {
               <div className="food_info_container">
                 <div className="food_name">{food.food_name}</div>
                 <div>
-                  <img src={Star} className="star_icon"></img>
+                  <Stardesign height={150} width={120} score1={5} score2={4} score3={3} score4={2} score5={1}/>
                 </div>
               </div>
               <div className="food_info_distance_container">
@@ -222,38 +223,7 @@ const Homepage = ({ google, foods, setFoods }) => {
           </div>
         ))}
 
-        {foods.map(food => (
-          <div className="food_container">
-            <div>
-              <img
-                src={food.food_image}
-                alt={food.food_name}
-                className="food_image"
-              />
-            </div>
-            {/* <div>STAR</div> */}
-            <div className="food_info_flex_box">
-              <div className="food_info_container">
-                <div className="food_name">{food.food_name}</div>
-                <div>
-                  <img src={Star} className="star_icon"></img>
-                </div>
-              </div>
-              <div className="food_info_distance_container">
-                <div className="food_distance">
-                  <p>300m</p>
-                </div>
-                <div className="food_info_map_container">
-                  <img
-                    src={MapIcon}
-                    className="map_icon"
-                    onClick={() => openMap(food.lattitude, food.longtitude)}
-                  ></img>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+        
       </div>
     </>
   );

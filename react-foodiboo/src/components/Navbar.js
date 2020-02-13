@@ -92,7 +92,7 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
         <>
       <nav id="navbar">
         <FoodibooLogo height="80%" width="150px"/>
-        <FoodibooIcon height="80%" width="150px"/>
+        
         <form onSubmit={searchFoods}>
               <input
                 type="text"
