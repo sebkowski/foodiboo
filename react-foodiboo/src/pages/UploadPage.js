@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import EXIF from "exif-js";
 import dms2dec from "dms2dec";
-import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
-import "../../src/UploadPage.css";
 import ExifOrientationImg from "react-exif-orientation-img";
+import { Link } from "react-router-dom";
+
+import "../../src/UploadPage.css";
+
+import arrow from "../../src/images/arrow.png";
+import close from "../../src/images/close.png";
 
 const UploadPage = ({
   google,
@@ -111,6 +116,12 @@ const UploadPage = ({
   }, [previewImage]);
   return (
     <>
+      <div className="close_button_container">
+        <Link to="/">
+          <div className="x_button">X</div>
+        </Link>
+        {/* <img src={close} className="close_button"></img> */}
+      </div>
       {/* <CustomInput
               type="file"
               id="exampleCustomFileBrowser"
@@ -142,6 +153,10 @@ const UploadPage = ({
             alt="previewimg"
             onClick={imageGeolocation}
           />
+          <div className="arrow_container">
+            {/* <div className="meal_container">Enjoy your meal</div> */}
+            <img src={arrow} className="arrow_icon"></img>
+          </div>
         </div>
       ) : null}
     </>

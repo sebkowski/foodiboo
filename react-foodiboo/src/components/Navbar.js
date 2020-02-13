@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "../../src/Navbar.css";
 import { toast } from "react-toastify";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Route, useLocation } from "react-router-dom";
 import Login from "./Login";
 
 const Navbar = ({ loggedIn, setLoggedIn }) => {
   let history = useHistory();
+  let location = useLocation();
+
   const [login, setlogin] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
@@ -49,13 +51,19 @@ const Navbar = ({ loggedIn, setLoggedIn }) => {
           setShowMenu={setShowMenu}
         />
       )}
-      <nav id="navbar">
-        <input type="text" placeholder="Search Food..." id="search_bar" />
-      </nav>
-      <div className="hamburger_clicker" onClick={toggleNav}></div>
-      <div className={showMenu ? "hamburger active" : "hamburger"}>
-        <div className="burger"></div>
-      </div>
+      {location.pathname === "/UploadPage" ? null : (
+        <>
+          <nav id="navbar">
+            <input type="text" placeholder="Search Food..." id="search_bar" />
+          </nav>
+
+          <div className="hamburger_clicker" onClick={toggleNav}></div>
+          <div className={showMenu ? "hamburger active" : "hamburger"}>
+            <div className="burger"></div>
+          </div>
+        </>
+      )}
+
       <div
         id="hidden_container"
         style={{
