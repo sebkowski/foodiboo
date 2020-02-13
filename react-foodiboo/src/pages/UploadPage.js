@@ -143,9 +143,7 @@ const UploadPage = ({
             onClick={imageGeolocation}
           />
         </div>
-      ) : (
-        <div className="upload_image_container"></div>
-      )}
+      ) : null}
     </>
   );
 };
