@@ -4,8 +4,6 @@ import GoogleMapReact from "google-map-react";
 import dms2dec from "dms2dec";
 import EXIF from "exif-js";
 
-import "../../src/Homepage.css";
-
 import Star from "../images/star.png";
 import MapIcon from "../images/GoogleMapsLogo.png";
 import test from "../images/test.JPG";
