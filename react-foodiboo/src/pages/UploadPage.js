@@ -156,7 +156,7 @@ const UploadPage = ({
           />
           <div className="arrow_container">
             {/* <div className="meal_container">Enjoy your meal</div> */}
-            <img src={arrow} className="arrow_icon"></img>
+            {/* <img src={arrow} className="arrow_icon"></img> */}
           </div>
         </div>
       ) : null}
