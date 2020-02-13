@@ -53,14 +53,20 @@ const TestInput = props => {
   function submitRating(){
       axios({
       method:"POST",
-        url:"https:",
+        url:"https://foodiboo.herokuapp.com/api/v1/food_dishes/create",
         data: {
             user_id: `${localStorage.getItem("user_id")}`,
+            // food_name: // The input where the user enters the name of the food,
             criterion_z1: `${getScore(y1)}`,
-             criterion_z2: `${getScore(y2)}`,
-              criterion_z3: `${getScore(y3)}`,
-              criterion_z4: `${getScore(y4)}`,
-              criterion_z5: `${getScore(y5)}`
+            criterion_z2: `${getScore(y2)}`,
+            criterion_z3: `${getScore(y3)}`,
+            criterion_z4: `${getScore(y4)}`,
+            criterion_z5: `${getScore(y5)}`
+            // food_picture: // name of the picture,
+            // latitude:
+            // longitude:
+            // price:
+            // tag_list: // Need an input for user to enter tags, append tags into an array and put the array here
         }})
 
 

@@ -15,7 +15,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem("JWT") !== null
   );
-  const [foods, setfoods] = useState([
+  const [foods, setFoods] = useState([
     {
       id: 1,
       food_name: "Nasi Lemak",
@@ -49,11 +49,11 @@ function App() {
         draggable
         pauseOnHover
       />
-      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} foods={foods} setFoods={setFoods} />
 
       <Switch>
         <Route exact path="/">
-          <Homepage />
+          <Homepage foods={foods} setFoods={setFoods}/>
         </Route>
         <Route exact path="/uploadPage">
           <UploadPage />
