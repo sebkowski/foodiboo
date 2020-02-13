@@ -78,6 +78,7 @@
   background-color: #173f5f;
   color: white;
   font-size: 17px;
+  height: 100%;
 }
 #search_bar::placeholder {
   color: white;

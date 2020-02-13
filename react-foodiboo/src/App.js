@@ -16,30 +16,33 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem("JWT") !== null
   );
-<<<<<<< HEAD
-  const [foods, setFoods] = useState([
-=======
+
   const [imageFile, setImageFile] = useState({});
   const [previewImage, setPreviewImage] = useState(null);
-  const [foods, setfoods] = useState([
->>>>>>> 76f8e87c7a042bd78b2260c46ed3b80eb4b0c429
+  const [foods, setFoods] = useState([
     {
       id: 1,
       food_name: "Nasi Lemak",
       food_image:
-        "http://www.friedchillies.com/images/uploads/reviews/NasiLemakAngah_Kerang.jpg"
+        "http://www.friedchillies.com/images/uploads/reviews/NasiLemakAngah_Kerang.jpg",
+      latitude: 3.1347416666666668,
+      longtitude: 101.62975277777777
     },
     {
       id: 2,
       food_name: "Pan Mee",
       food_image:
-        "https://i0.wp.com/penangfoodie.com/wp-content/uploads/2018/07/wassupjanice.png?resize=995%2C986"
+        "https://i0.wp.com/penangfoodie.com/wp-content/uploads/2018/07/wassupjanice.png?resize=995%2C986",
+      latitude: 3.1347584722222224,
+      longtitude: 101.62996738888889
     },
     {
       id: 3,
       food_name: "Chicken Rice",
       food_image:
-        "https://ucarecdn.com/f6a84197-bea2-4aa4-bedb-9635f8d4482c/-/scale_crop/1600x900/center/-/quality/normal/-/format/webp/roasted-chicken-rice.webp"
+        "https://ucarecdn.com/f6a84197-bea2-4aa4-bedb-9635f8d4482c/-/scale_crop/1600x900/center/-/quality/normal/-/format/webp/roasted-chicken-rice.webp",
+      latitude: 3.134666833333333,
+      longtitude: 101.62899752777777
     }
   ]);
 
@@ -56,20 +59,17 @@ function App() {
         draggable
         pauseOnHover
       />
-<<<<<<< HEAD
-      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} foods={foods} setFoods={setFoods} />
-=======
       <Navbar
         loggedIn={loggedIn}
         setLoggedIn={setLoggedIn}
         previewImage={previewImage}
         setPreviewImage={setPreviewImage}
+        setFoods={setFoods}
       />
->>>>>>> 76f8e87c7a042bd78b2260c46ed3b80eb4b0c429
 
       <Switch>
         <Route exact path="/">
-          <Homepage foods={foods} setFoods={setFoods}/>
+          <Homepage foods={foods} setFoods={setFoods} />
         </Route>
         <Route exact path="/uploadPage">
           <UploadPage

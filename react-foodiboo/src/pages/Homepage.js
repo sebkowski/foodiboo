@@ -12,7 +12,6 @@ import test from "../images/test.JPG";
 import test2 from "../images/test2.jpg";
 import test3 from "../images/Test3.jpg";
 
-<<<<<<< HEAD
 const Homepage = ({ google, foods, setFoods }) => {
   // const [foods, setfoods] = useState([
   //   {
@@ -34,35 +33,34 @@ const Homepage = ({ google, foods, setFoods }) => {
   //       "https://ucarecdn.com/f6a84197-bea2-4aa4-bedb-9635f8d4482c/-/scale_crop/1600x900/center/-/quality/normal/-/format/webp/roasted-chicken-rice.webp"
   //   }
   // ]);
-=======
-const Homepage = ({ google }) => {
-  const [foods, setfoods] = useState([
-    {
-      id: 1,
-      food_name: "Nasi Lemak",
-      food_image: test,
-      price: 300,
-      latitude: 3.1347416666666668,
-      longtitude: 101.62975277777777
-    },
-    {
-      id: 2,
-      food_name: "Pan Mee",
-      food_image: test2,
-      price: 300,
-      latitude: 3.1347584722222224,
-      longtitude: 101.62996738888889
-    },
-    {
-      id: 3,
-      food_name: "Chicken Rice",
-      food_image: test3,
-      price: 300,
-      latitude: 3.134666833333333,
-      longtitude: 101.62899752777777
-    }
-  ]);
->>>>>>> 76f8e87c7a042bd78b2260c46ed3b80eb4b0c429
+
+  // const Homepage = ({ google }) => {
+  //   const [foods, setfoods] = useState([
+  //     {
+  //       id: 1,
+  //       food_name: "Nasi Lemak",
+  //       food_image: test,
+  //       price: 300,
+  //       latitude: 3.1347416666666668,
+  //       longtitude: 101.62975277777777
+  //     },
+  //     {
+  //       id: 2,
+  //       food_name: "Pan Mee",
+  //       food_image: test2,
+  //       price: 300,
+  //       latitude: 3.1347584722222224,
+  //       longtitude: 101.62996738888889
+  //     },
+  //     {
+  //       id: 3,
+  //       food_name: "Chicken Rice",
+  //       food_image: test3,
+  //       price: 300,
+  //       latitude: 3.134666833333333,
+  //       longtitude: 101.62899752777777
+  //     }
+  //   ]);
 
   const [showMap, setShowMap] = useState([]);
 

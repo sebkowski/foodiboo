@@ -3,7 +3,7 @@ import "../../src/Navbar.css";
 import { toast } from "react-toastify";
 import { Link, useHistory, Route, useLocation } from "react-router-dom";
 import Login from "./Login";
-import axios from 'axios';
+import axios from "axios";
 
 const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
   let history = useHistory();
@@ -12,7 +12,7 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
   const [login, setlogin] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
-  const [searchBoxValue, setSearchBoxValue] = useState("")
+  const [searchBoxValue, setSearchBoxValue] = useState("");
 
   // console.log(localStorage.getItem("id"), "ID");
   // console.log(localStorage.getItem("username"), "USERNAME");
@@ -21,31 +21,36 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
   // console.log("is user logged in 1: ", loggedIn);
   // console.log("is user logged in 2: ", localStorage.getItem("JWT") !== null);
 
-  const searchFoods = (e) => {
+  const searchFoods = e => {
     e.preventDefault();
-    console.log(searchBoxValue)
-    setSearchBoxValue("")
+    console.log(searchBoxValue);
+    setSearchBoxValue("");
     axios({
       method: "get",
-      url: `https://foodiboo.herokuapp.com/api/v1/food_dishes/${searchBoxValue}`,
+      url: `https://foodiboo.herokuapp.com/api/v1/food_dishes/${searchBoxValue}`
     })
       .then(response => {
-        // console.log(response.data);
-        // console.log(response.data.first_review_food_pic);
-        // console.log(response.data.food_id_arr);
-        // console.log(response.data.food_id_arr);
-        let foodsContentArr = []
-        let i
+        console.log(response.data);
+        console.log(response.data.first_review_food_pic);
+        console.log(response.data.food_id_arr);
+        console.log(response.data.food_id_arr);
+        let foodsContentArr = [];
+        let i;
         for (i = 0; i < response.data.food_id_arr.length; i++) {
-          let foodsContentObj = {id: response.data.food_id_arr[i], food_name: searchBoxValue, food_image: response.data.first_review_food_pic[i]}
-          foodsContentArr.push(foodsContentObj)
+          let foodsContentObj = {
+            id: response.data.food_id_arr[i],
+            food_name: searchBoxValue,
+            food_image: response.data.first_review_food_pic[i]
+          };
+          foodsContentArr.push(foodsContentObj);
         }
-        setFoods(foodsContentArr)
+        setFoods(foodsContentArr);
       })
       .catch(error => {
-        console.error(error.response.data.err);
+        console.log(error.response.data.err);
+        // set error message here
       });
-  }
+  };
 
   const closeModal = () => {
     setlogin(false);
@@ -79,22 +84,22 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
           setShowMenu={setShowMenu}
         />
       )}
-<<<<<<< HEAD
-      <nav id="navbar">
 
-        <form onSubmit={searchFoods}><input type="text" placeholder="Search Food..." id="search_bar" value={searchBoxValue} onChange={e => {setSearchBoxValue(e.target.value)}} /></form>
-      </nav>
-      <div className="hamburger_clicker" onClick={toggleNav}></div>
-      <div className={showMenu ? "hamburger active" : "hamburger"}>
-        <div className="burger"></div>
-      </div>
-=======
       {location.pathname === "/UploadPage" ? null : (
         <>
           <nav id="navbar">
-            <input type="text" placeholder="Search Food..." id="search_bar" />
+            <form onSubmit={searchFoods}>
+              <input
+                type="text"
+                placeholder="Search Food..."
+                id="search_bar"
+                value={searchBoxValue}
+                onChange={e => {
+                  setSearchBoxValue(e.target.value);
+                }}
+              />
+            </form>
           </nav>
-
           <div className="hamburger_clicker" onClick={toggleNav}></div>
           <div className={showMenu ? "hamburger active" : "hamburger"}>
             <div className="burger" onClick={toggleNav}></div>
@@ -102,7 +107,6 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
         </>
       )}
 
->>>>>>> 76f8e87c7a042bd78b2260c46ed3b80eb4b0c429
       <div
         id="hidden_container"
         style={{
