@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
-import "../../src/Navbar.css";
+import React, { useState } from "react";
+
 import { toast } from "react-toastify";
 import { Link, useHistory, Route, useLocation } from "react-router-dom";
 import Login from "./Login";
 import axios from "axios";
+import FoodibooLogo from "./foodibooLogo";
+import FoodibooIcon from "./fodibooIcon";
+
 
 const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
   let history = useHistory();
@@ -87,8 +90,10 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
 
       {location.pathname === "/UploadPage" ? null : (
         <>
-          <nav id="navbar">
-            <form onSubmit={searchFoods}>
+      <nav id="navbar">
+        <FoodibooLogo height="80%" width="150px"/>
+        <FoodibooIcon height="80%" width="150px"/>
+        <form onSubmit={searchFoods}>
               <input
                 type="text"
                 placeholder="Search Food..."
@@ -99,13 +104,14 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
                 }}
               />
             </form>
-          </nav>
-          <div className="hamburger_clicker" onClick={toggleNav}></div>
-          <div className={showMenu ? "hamburger active" : "hamburger"}>
-            <div className="burger" onClick={toggleNav}></div>
-          </div>
+      </nav>
+      <div className="hamburger_clicker" onClick={toggleNav}></div>
+      <div className={showMenu ? "hamburger active" : "hamburger"}>
+        <div className="burger"></div>
+      </div>
         </>
       )}
+
 
       <div
         id="hidden_container"

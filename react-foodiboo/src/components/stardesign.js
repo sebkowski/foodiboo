@@ -60,6 +60,7 @@ const stardesign =  ({
         points={`100,100 150,100 165,147 125,176 85,147 100,100 `}
         style={{ fill: "yellow", stroke: "yellow", strokeWidth: 3 }}
       />
+     
       </svg>
 
 

@@ -7,9 +7,8 @@ import Homepage from "./pages/Homepage.js";
 import Navbar from "./components/Navbar.js";
 import CameraBar from "./components/CameraBar.js";
 
-import "./App.css";
-import "./Homepage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.scss";
 import StarRating from "./components/StarRating.js";
 
 function App() {

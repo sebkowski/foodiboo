@@ -54,6 +54,7 @@ const StarRating = ({}) => {
       <Stardesign score1={getScore(y1)}  score2={getScore(y2)} score3={getScore(y3)} score4={getScore(y4)} score5={getScore(y5)} />
       <Stardesign score1={5} score2={4} score3={3} score4={2} score5={1} />
     </ReactInputPosition>
+    
   );
 };
 export default StarRating;
