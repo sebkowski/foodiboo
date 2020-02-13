@@ -59,7 +59,7 @@ const Navbar = ({ loggedIn, setLoggedIn }) => {
 
           <div className="hamburger_clicker" onClick={toggleNav}></div>
           <div className={showMenu ? "hamburger active" : "hamburger"}>
-            <div className="burger"></div>
+            <div className="burger" onClick={toggleNav}></div>
           </div>
         </>
       )}

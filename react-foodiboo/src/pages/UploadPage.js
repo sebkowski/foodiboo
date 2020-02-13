@@ -122,6 +122,7 @@ const UploadPage = ({
         </Link>
         {/* <img src={close} className="close_button"></img> */}
       </div>
+
       {/* <CustomInput
               type="file"
               id="exampleCustomFileBrowser"
