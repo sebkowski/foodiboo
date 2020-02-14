@@ -95,7 +95,7 @@ const Starinput = ({
     <>
       <svg height="500" width="500">
 
-        
+
         {/* polyline below are for testing purposes
         
         
@@ -161,18 +161,16 @@ const Starinput = ({
         /> */}
         <Stardesign height= "400" width= "400" viewBox="-8 -10 300 300" score1={getScore(y1)}  score2={getScore(y2)} score3={getScore(y3)} score4={getScore(y4)} score5={getScore(y5)} />
       </svg>
-       <div>
-        <a>Location = {getScore(y1)} </a>
-        <a>Taste = {getScore(y2)} </a>
-        <a>Value = {getScore(y3)} </a>
-        <a>Fun = {getScore(y4)} </a>
-        <a>Higiene = {getScore(y5)} </a>
-        <a>x={parseInt(activePosition.x)} </a>
-        <a>y={parseInt(activePosition.y)} </a>
-        <a>y1={parseInt(y1)} </a>
+       <div >
+        <a>Value={getScore(y1)} </a>
+        <a>Taste={getScore(y2)} </a>
+        <a>Location={getScore(y3)} </a>
+        <a>Fun={getScore(y4)} </a>
+        <a>Higiene={getScore(y5)} </a>
+        
         
        
-        <Button Href="" variant="primary" size="lg" 
+        <Button href="" variant="primary" size="lg" 
         onClick={submitRating}
         >
         Submit rating
