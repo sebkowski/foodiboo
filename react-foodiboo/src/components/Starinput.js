@@ -30,7 +30,7 @@ const Starinput = ({
   };
 
   function lockposition1() {
-    setY1((Math.round((((activePosition.y)-20)*1.8)/60))*60);
+    setY1((Math.round((((activePosition.y)-10)*1.8)/60))*60);
   }
 
   function lockposition2() {
@@ -77,13 +77,13 @@ const Starinput = ({
     if ((parseInt(activePosition.x) > 150 && (parseInt(activePosition.x) < 205)) && ((parseInt(activePosition.y)<140)&& (parseInt(activePosition.y))>15)) {
       lockposition1();
     }
-    if ((parseInt(activePosition.x) > 220 && (parseInt(activePosition.x) < 350)) && ((parseInt(activePosition.y)<200)&& (parseInt(activePosition.y))>135)) {
+    if ((parseInt(activePosition.x) > 220 && (parseInt(activePosition.x) < 350)) && ((parseInt(activePosition.y)<200)&& (parseInt(activePosition.y))>120)) {
       lockposition2();
     }
-    if ((parseInt(activePosition.x) > 200 && (parseInt(activePosition.x) < 280)) && ((parseInt(activePosition.y)<340)&& (parseInt(activePosition.y))>215)){
+    if ((parseInt(activePosition.x) > 200 && (parseInt(activePosition.x) < 360)) && ((parseInt(activePosition.y)<350)&& (parseInt(activePosition.y))>215)){
       lockposition3();
     }
-    if ((parseInt(activePosition.x) > 75 && (parseInt(activePosition.x) < 153)) && ((parseInt(activePosition.y)<340)&& (parseInt(activePosition.y))>215)) {
+    if ((parseInt(activePosition.x) > 45 && (parseInt(activePosition.x) < 153)) && ((parseInt(activePosition.y)<350)&& (parseInt(activePosition.y))>215)) {
       lockposition4();
     }
     if ((parseInt(activePosition.x) > 5 && (parseInt(activePosition.x) < 135)) && ((parseInt(activePosition.y)<200)&&(parseInt(activePosition.y))>135)) {
@@ -94,6 +94,12 @@ const Starinput = ({
   return (
     <>
       <svg height="500" width="500">
+
+        
+        {/* polyline below are for testing purposes
+        
+        
+        */}
         {/* <polyline
           points={`150,140 150,15 205,15 205,140 150,140`}
           style={{ fill: "none", stroke: "green", strokeWidth: 3 }}
@@ -155,7 +161,7 @@ const Starinput = ({
         /> */}
         <Stardesign height= "400" width= "400" viewBox="-8 -10 300 300" score1={getScore(y1)}  score2={getScore(y2)} score3={getScore(y3)} score4={getScore(y4)} score5={getScore(y5)} />
       </svg>
-      {/* <div>
+       <div>
         <a>Location = {getScore(y1)} </a>
         <a>Taste = {getScore(y2)} </a>
         <a>Value = {getScore(y3)} </a>
@@ -173,7 +179,7 @@ const Starinput = ({
         </Button>
         
         
-      </div> */}
+      </div> 
       
     </>
   );
