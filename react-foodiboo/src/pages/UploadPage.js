@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import EXIF from "exif-js";
 import dms2dec from "dms2dec";
@@ -16,11 +17,17 @@ const UploadPage = ({
   setPreviewImage
 }) => {
   let fileInput = React.createRef();
-
+  console.log(imageFile);
+  const [showNamePopup, setShowNamePopup] = useState(false);
   const [lat, setLat] = useState(null);
   const [lngt, setLngt] = useState(null);
+  const [foodName, setFoodName] = useState("");
+  const [foodPrice, setFoodPrice] = useState("");
 
   // const [showMap, setShowMap] = useState(false);
+
+  let FormDate = new FormData();
+  FormDate.append("food_picture", imageFile);
 
   const imageGeolocation = e => {
     const img = e;
@@ -66,45 +73,66 @@ const UploadPage = ({
       // console.log(longtitudeDD);
       setLat(lattitudeDD);
       setLngt(longtitudeDD);
-      console.log(test);
+      // console.log(test);
     });
   };
 
-  console.log(lat);
-  console.log(lngt);
+  const openNamePopup = () => {
+    setShowNamePopup(true);
+  };
+  const closeNamePopup = () => {
+    setShowNamePopup(false);
+  };
 
-  //   const SubmitImage = e => {
-  //     e.preventDefault();
-  //     let JWT = localStorage.getItem("JWT");
-  //     let formData = new FormData();
-
-  //     formData.append("image", imageFile);
-
-  //     console.log(formData);
-
-  //     axios
-  //       .post("https://insta.nextacademy.com/api/v1/images/", formData, {
-  //         headers: { Authorization: `Bearer ${JWT}` }
-  //       })
-  //       .then(response => {
-  //         if (response.data.success) {
-  //           toast.info("Image uploaded!", {
-  //             position: "bottom-center",
-  //             autoClose: 4000,
-  //             hideProgressBar: false,
-  //             closeOnClick: true,
-  //             pauseOnHover: true,
-  //             draggable: true
-  //           });
-  //           setImageFile(null);
-  //           setPreviewImage(null);
-  //           setMessage("Image Uploaded Successfully!");
-  //         }
-  //       })
-  //       .catch(error => {
-  //         console.log(error.response);
-  //       });
-  //   };
+  const changeFoodName = e => {
+    // e.preventDefault();
+    console.log(e);
+    setFoodName(e);
+  };
+  const changeFoodPrice = e => {
+    // e.preventDefault();
+    console.log(e);
+    setFoodPrice(e);
+  };
+  const sumbitFood = () => {
+    axios({
+      method: "POST",
+      url: "https://foodiboo.herokuapp.com/api/v1/food_dishes/create",
+      data: {
+        food_picture: FormData,
+        user_id: `${localStorage.getItem("id")}`,
+        food_name: `${foodName}`,
+        latitude: `${lat}`,
+        longitude: `${lngt}`,
+        price: `${foodPrice}`
+      }
+    })
+      .then(response => {
+        console.log(response.data);
+        setFoodName("");
+        setFoodPrice("");
+        setLat(null);
+        setLngt(null);
+        setPreviewImage(null);
+        setImageFile(null);
+      })
+      .catch(error => {
+        console.log(error.response);
+        setFoodName("");
+        setFoodPrice("");
+        setLat(null);
+        setLngt(null);
+        setPreviewImage(null);
+        setImageFile(null);
+      });
+  };
+  // console.log(showNamePopup, "POPUP");
+  // console.log(foodName);
+  // console.log(foodPrice);
+  // console.log(lat);
+  // console.log(lngt);
+  // console.log(previewImage);
+  // console.log(imageFile);
 
   useEffect(() => {
     if (previewImage !== null) {
@@ -120,41 +148,56 @@ const UploadPage = ({
         </Link>
         {/* <img src={close} className="close_button"></img> */}
       </div>
-
-      {/* <CustomInput
-              type="file"
-              id="exampleCustomFileBrowser"
-              name="image-file"
-              label="choose an image file"
-              onChange={e => {
-                setImageFile(e.target.files[0]);
-                setPreviewImage(URL.createObjectURL(e.target.files[0]));
-              }}
-            /> */}
-      {/* <input
-              style={{display: 'none'}}
-              ref={fileInput}
-              capture
-              type="file"
-              accept="image/*"
-              name="image-file"
-              onChange={e => {
-                setImageFile(e.target.files[0]);
-                setPreviewImage(URL.createObjectURL(e.target.files[0]));
-              }}
-            /> */}
-
+      {showNamePopup ? (
+        <>
+          <div className="blackout_background" onClick={closeNamePopup}></div>
+          <div className="image_popup">
+            <div className="what_food">Name of dish?</div>
+            <form>
+              <div className="food_name_input_box_container">
+                <input
+                  className=""
+                  onChange={e => {
+                    changeFoodName(e.target.value);
+                  }}
+                  value={foodName}
+                ></input>
+              </div>
+              <div className="what_food">Price of dish?</div>
+              <div className="food_name_input_box_container">
+                <input
+                  type="number"
+                  onChange={e => {
+                    changeFoodPrice(e.target.value);
+                  }}
+                  value={foodPrice}
+                ></input>
+              </div>
+            </form>
+            <div className="submit_food_button_container">
+              <button className="submit_food_button" onClick={sumbitFood}>
+                Create menu
+              </button>
+            </div>
+          </div>
+        </>
+      ) : null}
       {previewImage ? (
         <div className="upload_image_container">
-          <ExifOrientationImg
-            className="upload_image"
-            src={previewImage}
-            alt="previewimg"
-            onClick={imageGeolocation}
-          />
+          <form>
+            <ExifOrientationImg
+              className="upload_image"
+              src={previewImage}
+              alt="previewimg"
+              onClick={imageGeolocation}
+            />
+          </form>
           <div className="arrow_container">
-            {/* <div className="meal_container">Enjoy your meal</div> */}
-            {/* <img src={arrow} className="arrow_icon"></img> */}
+            <img
+              src={arrow}
+              className="arrow_icon"
+              onClick={openNamePopup}
+            ></img>
           </div>
         </div>
       ) : null}

@@ -57,3 +57,51 @@
   height: 33px;
   margin: 0 4vw 0 0;
 }
+.image_popup {
+  background-color: $color3;
+  z-index: 5;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 80vw;
+  height: 50vh;
+  border: 1px solid $color4;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+.what_food {
+  width: 100%;
+  height: 70px;
+  text-align: center;
+  line-height: 80px;
+  font-size: 18px;
+  color: white;
+}
+.food_name_input_box_container {
+  width: 100%;
+  height: 50px;
+  text-align: center;
+}
+.food_name_input_box_container input {
+  height: 40px;
+  font-size: 20px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid $color4;
+}
+.submit_food_button_container {
+  height: 80px;
+  text-align: center;
+  outline: none;
+}
+.submit_food_button {
+  margin: 10px 0 0 0;
+  width: 130px;
+  background-color: $color1;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid $color4;
+  color: white;
+}
