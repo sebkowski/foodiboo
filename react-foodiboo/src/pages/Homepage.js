@@ -204,7 +204,7 @@ const Homepage = ({ google, foods, setFoods }) => {
               <div className="food_info_container">
                 <div className="food_name">{food.food_name}</div>
                 <div>
-                  <Stardesign height={150} width={120} score1={5} score2={4} score3={3} score4={2} score5={1}/>
+                  <Stardesign fillOpacity={0.8} viewBox={"0 -20 250 300"} height={80} width={80} score1={5} score2={4} score3={3} score4={2} score5={1}/>
                 </div>
               </div>
               <div className="food_info_distance_container">

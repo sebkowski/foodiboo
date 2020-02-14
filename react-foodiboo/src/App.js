@@ -10,6 +10,7 @@ import CameraBar from "./components/CameraBar.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 import StarRating from "./components/StarRating.js";
+import RatingPage from "./components/RatingPage.js";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(
@@ -80,6 +81,9 @@ function App() {
         </Route>
         <Route exact path="/StarRating">
           <StarRating />
+        </Route>
+        <Route exact path="/RatingPage">
+          <RatingPage />
         </Route>
 
         {/* <Route exact path="/user/:id">
