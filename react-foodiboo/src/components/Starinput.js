@@ -159,14 +159,14 @@ const Starinput = ({
           points={`300,400 350,250 275,250 300,400 `}
           style={{ fill: "none", stroke: "black", strokeWidth: 3 }}
         /> */}
-        <Stardesign height= "400" width= "400" viewBox="-8 -10 300 300" score1={getScore(y1)}  score2={getScore(y2)} score3={getScore(y3)} score4={getScore(y4)} score5={getScore(y5)} />
+        <Stardesign fillOpacity="0.8" height= "400" width= "400" viewBox="-8 -10 300 300" score1={getScore(y1)}  score2={getScore(y2)} score3={getScore(y3)} score4={getScore(y4)} score5={getScore(y5)} />
       </svg>
        <div >
-        <a>Value={getScore(y1)} </a>
-        <a>Taste={getScore(y2)} </a>
-        <a>Location={getScore(y3)} </a>
-        <a>Fun={getScore(y4)} </a>
-        <a>Higiene={getScore(y5)} </a>
+        <a>Taste={getScore(y1)} </a>
+        <a>Health={getScore(y2)} </a>
+        <a>Value={getScore(y3)} </a>
+        <a>Location={getScore(y4)} </a>
+        <a>Service={getScore(y5)} </a>
         
         
        
