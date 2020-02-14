@@ -8,7 +8,9 @@ const stardesign =  ({
     score4,
     score5,
     height = 244,
-    width = 254
+    width = 254,
+    viewBox = "50 0 250 500",
+    fillOpacity ="0.5"
 }) => {
 
     
@@ -17,7 +19,7 @@ const stardesign =  ({
       };
     
     return (
-        <svg height={height} width={width} viewBox="50 0 250 500"  >
+        <svg height={height} width={width} viewBox={viewBox} fillOpacity={fillOpacity} >
         <polyline 
         className="polyline-1"
         points={`100,100 150,100 125,0 100,100 `}
