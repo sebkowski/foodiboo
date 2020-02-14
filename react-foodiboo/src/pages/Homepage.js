@@ -12,55 +12,6 @@ import test3 from "../images/Test3.jpg";
 import Stardesign from "../components/stardesign";
 
 const Homepage = ({ google, foods, setFoods }) => {
-  // const [foods, setfoods] = useState([
-  //   {
-  //     id: 1,
-  //     food_name: "Nasi Lemak",
-  //     food_image:
-  //       "http://www.friedchillies.com/images/uploads/reviews/NasiLemakAngah_Kerang.jpg"
-  //   },
-  //   {
-  //     id: 2,
-  //     food_name: "Pan Mee",
-  //     food_image:
-  //       "https://i0.wp.com/penangfoodie.com/wp-content/uploads/2018/07/wassupjanice.png?resize=995%2C986"
-  //   },
-  //   {
-  //     id: 3,
-  //     food_name: "Chicken Rice",
-  //     food_image:
-  //       "https://ucarecdn.com/f6a84197-bea2-4aa4-bedb-9635f8d4482c/-/scale_crop/1600x900/center/-/quality/normal/-/format/webp/roasted-chicken-rice.webp"
-  //   }
-  // ]);
-
-  // const Homepage = ({ google }) => {
-  //   const [foods, setfoods] = useState([
-  //     {
-  //       id: 1,
-  //       food_name: "Nasi Lemak",
-  //       food_image: test,
-  //       price: 300,
-  //       latitude: 3.1347416666666668,
-  //       longtitude: 101.62975277777777
-  //     },
-  //     {
-  //       id: 2,
-  //       food_name: "Pan Mee",
-  //       food_image: test2,
-  //       price: 300,
-  //       latitude: 3.1347584722222224,
-  //       longtitude: 101.62996738888889
-  //     },
-  //     {
-  //       id: 3,
-  //       food_name: "Chicken Rice",
-  //       food_image: test3,
-  //       price: 300,
-  //       latitude: 3.134666833333333,
-  //       longtitude: 101.62899752777777
-  //     }
-  //   ]);
-
   const [showMap, setShowMap] = useState([]);
 
   const openMap = (latit, longt) => {
@@ -115,7 +66,7 @@ const Homepage = ({ google, foods, setFoods }) => {
     });
   };
 
-  console.log(showMap);
+  // console.log(showMap);
 
   return (
     <>
