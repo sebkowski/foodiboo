@@ -19,23 +19,15 @@
   height: 27px;
 }
 .upload_image_container {
-  margin: 80px 0 0 0;
-  /* top: 37%;
-    left: 50%; */
   height: 100vw;
-  /* width: 110vw; */
   border-radius: 4px;
   position: absolute;
-  /* transform: translate(-50%, -50%); */
-  /* border: 1px solid black; */
+  transform: translate(-50%, -50%);
+  top: 48%;
+  left: 50%;
 }
 .upload_image {
-  /* margin: 80px 0 0 0; */
   object-fit: cover;
-  /* transform: translate(-50%, -50%); */
-  /* top: 80%;
-    left: 50%; */
-  /* transform: rotate(90deg); */
   height: 100vw;
   width: 100vw;
 }
@@ -46,7 +38,7 @@
 .arrow_container {
   height: 33px;
   position: fixed;
-  bottom: 3.5vh;
+  bottom: 5vh;
   z-index: 1;
   display: flex;
   width: 100vw;
@@ -56,6 +48,7 @@
   width: 33px;
   height: 33px;
   margin: 0 4vw 0 0;
+  filter: invert(100%);
 }
 .image_popup {
   background-color: $color3;
@@ -104,4 +97,18 @@
   border-radius: 4px;
   border: 1px solid $color4;
   color: white;
+}
+.no_gps_message_box {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  line-height: 6vh;
+  border-radius: 4px;
+  height: 12vh;
+  width: 90vw;
+  background-color: $color3;
+  font-size: 18px;
+  text-align: center;
+  color: $color4;
 }

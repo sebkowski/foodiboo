@@ -4,7 +4,7 @@ import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import EXIF from "exif-js";
 import dms2dec from "dms2dec";
 import ExifOrientationImg from "react-exif-orientation-img";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import arrow from "../../src/images/arrow.png";
 import close from "../../src/images/close.png";
@@ -24,6 +24,7 @@ const UploadPage = ({
   const [lngt, setLngt] = useState(null);
   const [foodName, setFoodName] = useState("");
   const [foodPrice, setFoodPrice] = useState("");
+  const [gpsLocation, setGpsLocation] = useState(true);
 
   // const [showMap, setShowMap] = useState(false);
 
@@ -39,42 +40,50 @@ const UploadPage = ({
       let longtitudeRef = EXIF.getTag(img, "GPSLongitudeRef");
       let test = EXIF.getTag(img, "Orientation");
 
-      // GEO LOCATION DMS FORMAT
-      // let lattitudePos = `${parseFloat(lattitude[0])}°${parseFloat(
-      //   lattitude[1]
-      // )}'${parseFloat(lattitude[2])}″${lattitudeRef}`;
+      console.log(lattitude, "JIFAJFIAJIFAIJFIF");
+      console.log(lattitudeRef, "JIFAJFIAJIFAIJFIF");
+      console.log(longtitude, "JIFAJFIAJIFAIJFIF");
+      console.log(longtitudeRef, "JIFAJFIAJIFAIJFIF");
+      if (!lattitude || !lattitudeRef || !longtitude || !longtitudeRef) {
+        setGpsLocation(false);
+      } else {
+        // GEO LOCATION DMS FORMAT
+        // let lattitudePos = `${parseFloat(lattitude[0])}°${parseFloat(
+        //   lattitude[1]
+        // )}'${parseFloat(lattitude[2])}″${lattitudeRef}`;
 
-      // let longtitudePos = `${parseFloat(longtitude[0])}°${parseFloat(
-      //   longtitude[1]
-      // )}'${parseFloat(longtitude[2])}″${longtitudeRef}`;
+        // let longtitudePos = `${parseFloat(longtitude[0])}°${parseFloat(
+        //   longtitude[1]
+        // )}'${parseFloat(longtitude[2])}″${longtitudeRef}`;
 
-      // console.log(lattitudePos);
-      // console.log(longtitudePos);
-      // console.log(`${lattitudePos} ${longtitudePos}`);
+        // console.log(lattitudePos);
+        // console.log(longtitudePos);
+        // console.log(`${lattitudePos} ${longtitudePos}`);
 
-      // GEO LOCATION DD FORMAT
-      let geoPositionDD = dms2dec(
-        [
-          parseFloat(lattitude[0]),
-          parseFloat(lattitude[1]),
-          parseFloat(lattitude[2])
-        ],
-        lattitudeRef,
-        [
-          parseFloat(longtitude[0]),
-          parseFloat(longtitude[1]),
-          parseFloat(longtitude[2])
-        ],
-        longtitudeRef
-      );
-      // console.log(geoPositionDD);
-      let lattitudeDD = geoPositionDD[0];
-      let longtitudeDD = geoPositionDD[1];
-      // console.log(lattitudeDD);
-      // console.log(longtitudeDD);
-      setLat(lattitudeDD);
-      setLngt(longtitudeDD);
-      // console.log(test);
+        // GEO LOCATION DD FORMAT
+        let geoPositionDD = dms2dec(
+          [
+            parseFloat(lattitude[0]),
+            parseFloat(lattitude[1]),
+            parseFloat(lattitude[2])
+          ],
+          lattitudeRef,
+          [
+            parseFloat(longtitude[0]),
+            parseFloat(longtitude[1]),
+            parseFloat(longtitude[2])
+          ],
+          longtitudeRef
+        );
+        // console.log(geoPositionDD);
+        let lattitudeDD = geoPositionDD[0];
+        let longtitudeDD = geoPositionDD[1];
+        // console.log(lattitudeDD);
+        // console.log(longtitudeDD);
+        setLat(lattitudeDD);
+        setLngt(longtitudeDD);
+        // console.log(test);
+      }
     });
   };
 
@@ -94,6 +103,18 @@ const UploadPage = ({
     // e.preventDefault();
     console.log(e);
     setFoodPrice(e);
+  };
+  const xButton = () => {
+    setFoodName("");
+    setFoodPrice("");
+    setLat(null);
+    setLngt(null);
+    setPreviewImage(null);
+    setImageFile(null);
+    setGpsLocation(true);
+    if (imageFile === null) {
+      history.push("/");
+    }
   };
   const sumbitFood = () => {
     axios({
@@ -123,12 +144,12 @@ const UploadPage = ({
       });
   };
   // console.log(showNamePopup, "POPUP");
-  // console.log(foodName);
-  // console.log(foodPrice);
-  // console.log(lat);
-  // console.log(lngt);
-  // console.log(previewImage);
-  // console.log(imageFile);
+  console.log(foodName, "foodname");
+  console.log(foodPrice, "foodprice");
+  console.log(lat, "LAT");
+  console.log(lngt, "lng");
+  console.log(previewImage, "previewimage");
+  console.log(imageFile, "imagefile");
 
   useEffect(() => {
     if (previewImage !== null) {
@@ -139,9 +160,9 @@ const UploadPage = ({
   return (
     <>
       <div className="close_button_container">
-        <Link to="/">
-          <div className="x_button">X</div>
-        </Link>
+        <div className="x_button" onClick={xButton}>
+          X
+        </div>
         {/* <img src={close} className="close_button"></img> */}
       </div>
       {showNamePopup ? (
@@ -179,15 +200,17 @@ const UploadPage = ({
         </>
       ) : null}
       {previewImage ? (
-        <div className="upload_image_container">
-          <form>
-            <ExifOrientationImg
-              className="upload_image"
-              src={previewImage}
-              alt="previewimg"
-              onClick={imageGeolocation}
-            />
-          </form>
+        <>
+          <div className="upload_image_container">
+            <form>
+              <ExifOrientationImg
+                className="upload_image"
+                src={previewImage}
+                alt="previewimg"
+                onClick={imageGeolocation}
+              />
+            </form>
+          </div>
           <div className="arrow_container">
             <img
               src={arrow}
@@ -195,8 +218,13 @@ const UploadPage = ({
               onClick={openNamePopup}
             ></img>
           </div>
-        </div>
+        </>
       ) : null}
+      {gpsLocation ? null : (
+        <div className="no_gps_message_box">
+          Cant recieve GPS location. Please enable camera location services
+        </div>
+      )}
     </>
   );
 };

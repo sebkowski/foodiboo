@@ -66,7 +66,7 @@ const Homepage = ({ google, foods, setFoods }) => {
     });
   };
 
-  console.log(showMap);
+  // console.log(showMap);
 
   return (
     <>
