@@ -101,13 +101,12 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 50%;
+  width: 70%;
   margin: 1vh 0 0 0;
   text-align: center;
 }
 .food_name {
-  font-size: 18px;
-  margin: 0 0 0 1vw;
+  font-size: 17px;
 }
 .star_icon {
   width: 50px;
@@ -118,7 +117,7 @@ p {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  width: 50%;
+  width: 30%;
 }
 .food_distance {
   height: 50%;

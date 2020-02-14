@@ -89,12 +89,12 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
       {location.pathname === "/UploadPage" ? null : (
         <>
           <nav id="navbar">
-            <FoodibooLogo height="80%" width="150px" />
+            <FoodibooLogo className="foodiboo_logo" />
 
             <form onSubmit={searchFoods}>
               <input
                 type="text"
-                placeholder="Search Food..."
+                placeholder="Search Food.."
                 id="search_bar"
                 value={searchBoxValue}
                 onChange={e => {

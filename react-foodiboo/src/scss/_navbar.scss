@@ -69,16 +69,23 @@
   top: 0;
   transform: rotate(135deg);
 }
+.foodiboo_logo {
+  width: 120px;
+  margin: 0 0 0 5vw;
+}
 #search_bar {
+  margin: 12px 18vw 0 0;
   outline: none;
   width: 40vw;
-  border: none;
+  border: 1px solid $color4;
   background-color: $color3;
-  color: white;
+  color: $color4;
   font-size: 17px;
+  text-align: center;
+  height: 50px;
 }
 #search_bar::placeholder {
-  color: white;
+  color: $color4;
 }
 #search_bar:focus::placeholder {
   color: transparent;
