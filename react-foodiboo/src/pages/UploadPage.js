@@ -28,8 +28,10 @@ const UploadPage = ({
 
   // const [showMap, setShowMap] = useState(false);
 
-  let FormDate = new FormData();
-  FormDate.append("food_picture", imageFile);
+  let foodPicture = new FormData();
+  foodPicture.append("food_picture", imageFile);
+
+  console.log(foodPicture, "FOOD PICTRUE");
 
   const imageGeolocation = e => {
     const img = e;
@@ -38,12 +40,7 @@ const UploadPage = ({
       let lattitudeRef = EXIF.getTag(img, "GPSLatitudeRef");
       let longtitude = EXIF.getTag(img, "GPSLongitude");
       let longtitudeRef = EXIF.getTag(img, "GPSLongitudeRef");
-      let test = EXIF.getTag(img, "Orientation");
 
-      console.log(lattitude, "JIFAJFIAJIFAIJFIF");
-      console.log(lattitudeRef, "JIFAJFIAJIFAIJFIF");
-      console.log(longtitude, "JIFAJFIAJIFAIJFIF");
-      console.log(longtitudeRef, "JIFAJFIAJIFAIJFIF");
       if (!lattitude || !lattitudeRef || !longtitude || !longtitudeRef) {
         setGpsLocation(false);
       } else {
@@ -96,12 +93,12 @@ const UploadPage = ({
 
   const changeFoodName = e => {
     // e.preventDefault();
-    console.log(e);
+    // console.log(e);
     setFoodName(e);
   };
   const changeFoodPrice = e => {
     // e.preventDefault();
-    console.log(e);
+    // console.log(e);
     setFoodPrice(e);
   };
   const xButton = () => {
@@ -121,9 +118,14 @@ const UploadPage = ({
       method: "POST",
       url: "https://foodiboo.herokuapp.com/api/v1/food_dishes/create",
       data: {
-        food_picture: FormData,
         user_id: `${localStorage.getItem("id")}`,
         food_name: `${foodName}`,
+        criterion_z1: 1,
+        criterion_z2: 2,
+        criterion_z3: 3,
+        criterion_z4: 4,
+        criterion_z5: 5,
+        // food_picture: foodPicture,
         latitude: `${lat}`,
         longitude: `${lngt}`,
         price: `${foodPrice}`
@@ -144,11 +146,11 @@ const UploadPage = ({
       });
   };
   // console.log(showNamePopup, "POPUP");
-  console.log(foodName, "foodname");
-  console.log(foodPrice, "foodprice");
+  // console.log(foodName, "foodname");
+  // console.log(foodPrice, "foodprice");
   console.log(lat, "LAT");
   console.log(lngt, "lng");
-  console.log(previewImage, "previewimage");
+  // console.log(previewImage, "previewimage");
   console.log(imageFile, "imagefile");
 
   useEffect(() => {
