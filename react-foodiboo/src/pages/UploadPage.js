@@ -4,7 +4,7 @@ import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import EXIF from "exif-js";
 import dms2dec from "dms2dec";
 import ExifOrientationImg from "react-exif-orientation-img";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import arrow from "../../src/images/arrow.png";
 import close from "../../src/images/close.png";
@@ -17,7 +17,8 @@ const UploadPage = ({
   setPreviewImage
 }) => {
   let fileInput = React.createRef();
-  console.log(imageFile);
+  let history = useHistory();
+
   const [showNamePopup, setShowNamePopup] = useState(false);
   const [lat, setLat] = useState(null);
   const [lngt, setLngt] = useState(null);
@@ -115,15 +116,10 @@ const UploadPage = ({
         setLngt(null);
         setPreviewImage(null);
         setImageFile(null);
+        history.push("/");
       })
       .catch(error => {
         console.log(error.response);
-        setFoodName("");
-        setFoodPrice("");
-        setLat(null);
-        setLngt(null);
-        setPreviewImage(null);
-        setImageFile(null);
       });
   };
   // console.log(showNamePopup, "POPUP");
@@ -136,10 +132,10 @@ const UploadPage = ({
 
   useEffect(() => {
     if (previewImage !== null) {
-      // console.log();
       imageGeolocation(imageFile);
     }
   }, [previewImage]);
+
   return (
     <>
       <div className="close_button_container">
@@ -205,7 +201,3 @@ const UploadPage = ({
   );
 };
 export default UploadPage;
-
-// export default GoogleApiWrapper({
-//   apiKey: "AIzaSyDctpk36CsKzJFeEU6Fev5H8tM1Ls2b15Q"
-// })(UploadPage);
