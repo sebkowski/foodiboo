@@ -30,23 +30,24 @@ const Starinput = ({
   };
 
   function lockposition1() {
-    setY1((Math.round((activePosition.y)/60))*60);
+    setY1((Math.round((((activePosition.y)-20)*1.8)/60))*60);
   }
 
   function lockposition2() {
-    setY2((Math.round((activePosition.y)/60))*60);
+    // return console.log("active");
+    setY2((Math.round(((((activePosition.x)-10)*1.8)-10)/60))*60);
   }
 
   function lockposition3() {
-    setY3((Math.round((activePosition.y)/60))*60);
+    setY3((Math.round((((activePosition.y)-45)*2)/60)-10)*60);
   }
 
   function lockposition4() {
-    setY4((Math.round((activePosition.y)/60))*60);
+    setY4((Math.round((((activePosition.y)-45)*2)/60)-10)*60);
   }
 
   function lockposition5() {
-    setY5((Math.round((activePosition.y)/60))*60);
+    setY5((Math.round((((activePosition.x)-15)*2.22)/60))*60);
   }
 
 
@@ -73,19 +74,19 @@ const Starinput = ({
 }
 
   useEffect(() => {
-    if (parseInt(activePosition.x) > 25 && (parseInt(activePosition.x) < 50) && (parseInt(activePosition.y)<300)) {
+    if ((parseInt(activePosition.x) > 150 && (parseInt(activePosition.x) < 205)) && ((parseInt(activePosition.y)<140)&& (parseInt(activePosition.y))>15)) {
       lockposition1();
     }
-    if (parseInt(activePosition.x) > 75 && (parseInt(activePosition.x) < 100) && (parseInt(activePosition.y)<300)) {
+    if ((parseInt(activePosition.x) > 220 && (parseInt(activePosition.x) < 350)) && ((parseInt(activePosition.y)<200)&& (parseInt(activePosition.y))>135)) {
       lockposition2();
     }
-    if (parseInt(activePosition.x) > 125 && (parseInt(activePosition.x) < 150) && (parseInt(activePosition.y)<300)){
+    if ((parseInt(activePosition.x) > 200 && (parseInt(activePosition.x) < 280)) && ((parseInt(activePosition.y)<340)&& (parseInt(activePosition.y))>215)){
       lockposition3();
     }
-    if (parseInt(activePosition.x) > 175 && (parseInt(activePosition.x) < 200) && (parseInt(activePosition.y)<300)) {
+    if ((parseInt(activePosition.x) > 75 && (parseInt(activePosition.x) < 153)) && ((parseInt(activePosition.y)<340)&& (parseInt(activePosition.y))>215)) {
       lockposition4();
     }
-    if (parseInt(activePosition.x) > 225 && (parseInt(activePosition.x) < 250) && (parseInt(activePosition.y)<300)) {
+    if ((parseInt(activePosition.x) > 5 && (parseInt(activePosition.x) < 135)) && ((parseInt(activePosition.y)<200)&&(parseInt(activePosition.y))>135)) {
       lockposition5();
     }
   });
@@ -93,7 +94,7 @@ const Starinput = ({
   return (
     <>
       <svg height="500" width="500">
-        <polyline
+        {/* <polyline
           points={`150,140 150,15 205,15 205,140 150,140`}
           style={{ fill: "none", stroke: "green", strokeWidth: 3 }}
         />
@@ -106,14 +107,14 @@ const Starinput = ({
           style={{ fill: "none", stroke: "green", strokeWidth: 3 }}
         />
         <polyline
-          points={`150,215 150,340 75,340 75,215 150,215`}
+          points={`153,215 153,340 75,340 75,215 153,215`}
           style={{ fill: "none", stroke: "green", strokeWidth: 3 }}
         />
         <polyline
           points={`135,135 135,200 5,200 5,135 135,135`}
           style={{ fill: "none", stroke: "green", strokeWidth: 3 }}
-        />
-
+        /> */}
+{/* 
         <polyline
           points={`25,${parseInt(y1)} 50,${parseInt(
             y1
@@ -143,7 +144,7 @@ const Starinput = ({
             y5
           )} 250,300 225,300 225,${parseInt(y5)} `}
           style={{ fill: "none", stroke: "black", strokeWidth: 3 }}
-        />
+        /> */}
 
 
         
@@ -154,7 +155,7 @@ const Starinput = ({
         /> */}
         <Stardesign height= "400" width= "400" viewBox="-8 -10 300 300" score1={getScore(y1)}  score2={getScore(y2)} score3={getScore(y3)} score4={getScore(y4)} score5={getScore(y5)} />
       </svg>
-      <div>
+      {/* <div>
         <a>Location = {getScore(y1)} </a>
         <a>Taste = {getScore(y2)} </a>
         <a>Value = {getScore(y3)} </a>
@@ -172,7 +173,7 @@ const Starinput = ({
         </Button>
         
         
-      </div>
+      </div> */}
       
     </>
   );
