@@ -9,13 +9,11 @@ import Stardesign from "./stardesign";
 
 const div1style = {
   display: "block",
-  width: "99vw",
+  width: "100vw",
     height: "85vh",
-  marginTop: "90px",
-  marginLeft: "auto",
-  marginRight: "auto",
-  background: "lightgrey",
-  border: "solid"
+  marginTop: "100px",
+  
+  background: "white",
 };
 
 const RatingPage = ({}) => {
@@ -38,11 +36,10 @@ const RatingPage = ({}) => {
     setY5
   };
 
-  const getScore = val => {
-    return Math.floor(Math.abs((val / 300) * 5 - 5));
-  };
+ 
 
   return (
+    
     <ReactInputPosition
       style={div1style}
       mouseActivationMethod={MOUSE_ACTIVATION.CLICK}
@@ -50,6 +47,7 @@ const RatingPage = ({}) => {
       trackItemPosition
       trackPassivePosition
     >
+
       <Starinput {...myProps} />
       
       

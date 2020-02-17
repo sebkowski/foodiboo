@@ -8,3 +8,22 @@
 .polyline-2 {
     fill: yellow; stroke: $color3; stroke-width: 0
 }
+
+.rating-display {
+    position: fixed;
+    top: 400px;
+    left: 10px;
+    right: 0;
+
+    a {
+        display: block;
+    }
+}
+
+#rate-btn {
+    position: fixed;
+    top: 450px;
+    right: 10px;
+    background: $color1;
+    border: none;
+}
