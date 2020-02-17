@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { Link, useHistory, Route, useLocation, Redirect } from "react-router-dom";
+import {
+  Link,
+  useHistory,
+  Route,
+  useLocation,
+  Redirect
+} from "react-router-dom";
 import Login from "./Login";
 import axios from "axios";
 import FoodibooLogo from "./foodibooLogo";
@@ -61,7 +67,8 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods, currentUser }) => {
         let foodsContentObj = {
           id: 999999999999999999999999,
           food_name: error.response.data.err,
-          food_image: "https://barrie360.com/wp-content/uploads/2019/02/missing-1-1-400x200.jpg",
+          food_image:
+            "https://barrie360.com/wp-content/uploads/2019/02/missing-1-1-400x200.jpg",
           average_c1: 1,
           average_c2: 1,
           average_c3: 1,
@@ -72,7 +79,7 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods, currentUser }) => {
           price: "00.00"
         };
         foodsContentArr.push(foodsContentObj);
-        setFoods(foodsContentArr)
+        setFoods(foodsContentArr);
       });
   };
 
@@ -94,8 +101,6 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods, currentUser }) => {
     setShowMenu(!showMenu);
   };
 
-  
-
   return (
     <>
       {login && (
@@ -114,14 +119,13 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods, currentUser }) => {
       {location.pathname === "/UploadPage" ? null : (
         <>
           <nav id="navbar">
-<<<<<<< HEAD
-
-            <Link style={{marginTop:"20px"}} to="/homePage" className="logo_link">
-=======
-            <Link style={{marginTop:"20px"}} to="/" className="logo_link" onClick={() => setFoods([])}>
->>>>>>> Made A LOT of changes, but nothing broke. Changes were made to create the user profile page
-            <FoodibooLogo className="foodiboo_logo" />
-
+            <Link
+              style={{ marginTop: "20px" }}
+              to="/"
+              className="logo_link"
+              onClick={() => setFoods([])}
+            >
+              <FoodibooLogo className="foodiboo_logo" />
             </Link>
 
             <form onSubmit={searchFoods}>
@@ -152,11 +156,15 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods, currentUser }) => {
         }}
       >
         <div className="hidden_nav_contents">
-          <Link to={`/ProfilePage/${currentUser}`}><div onClick={toggleNav} className="hidden_nav_title">Profile</div></Link>
+          <Link to={`/ProfilePage/${currentUser}`}>
+            <div onClick={toggleNav} className="hidden_nav_title">
+              Profile
+            </div>
+          </Link>
           <div className="hidden_nav_title">Settings</div>
-          <Link  to="/ContactPage"  onClick={toggleNav}>
+          <Link to="/ContactPage" onClick={toggleNav}>
             <div className="hidden_nav_title">Contact</div>
-            </Link>
+          </Link>
           <div className="hidden_nav_title">
             <div
               onClick={openModal}
