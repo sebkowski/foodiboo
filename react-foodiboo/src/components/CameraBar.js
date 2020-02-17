@@ -11,10 +11,12 @@ const CameraBar = ({
 }) => {
   let location = useLocation();
   let fileInput = React.createRef();
+
   const saveImage = e => {
     setImageFile(e.target.files[0]);
     console.log(URL.createObjectURL(e.target.files[0]));
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
+    e.target.value = "";
   };
 
   return (

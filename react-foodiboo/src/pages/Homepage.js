@@ -3,6 +3,7 @@ import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import GoogleMapReact from "google-map-react";
 import dms2dec from "dms2dec";
 import EXIF from "exif-js";
+import ExifOrientationImg from "react-exif-orientation-img";
 
 import Star from "../images/star.png";
 import MapIcon from "../images/GoogleMapsLogo.png";
@@ -22,6 +23,7 @@ const Homepage = ({ google, foods, setFoods }) => {
     setShowMap([]);
   };
 
+  const openFood = () => {};
   const imageGeolocation = e => {
     const img = e.target;
     EXIF.getData(img, function() {
@@ -147,7 +149,7 @@ const Homepage = ({ google, foods, setFoods }) => {
                 src={food.food_image}
                 alt={food.food_name}
                 className="food_image"
-                onClick={imageGeolocation}
+                // onClick={openFood}
               />
             </div>
             {/* <div>STAR</div> */}
@@ -155,7 +157,17 @@ const Homepage = ({ google, foods, setFoods }) => {
               <div className="food_info_container">
                 <div className="food_name">{food.food_name}</div>
                 <div>
-                  <Stardesign fillOpacity={0.8} viewBox={"0 -20 250 300"} height={80} width={80} score1={5} score2={4} score3={3} score4={2} score5={1}/>
+                  <Stardesign
+                    fillOpacity={0.8}
+                    viewBox={"0 -20 250 300"}
+                    height={80}
+                    width={80}
+                    score1={food.average_c1}
+                    score2={food.average_c2}
+                    score3={food.average_c3}
+                    score4={food.average_c4}
+                    score5={food.average_c5}
+                  />
                 </div>
               </div>
               <div className="food_info_distance_container">
@@ -173,8 +185,6 @@ const Homepage = ({ google, foods, setFoods }) => {
             </div>
           </div>
         ))}
-
-        
       </div>
     </>
   );

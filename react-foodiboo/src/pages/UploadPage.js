@@ -23,15 +23,10 @@ const UploadPage = ({
   const [lat, setLat] = useState(null);
   const [lngt, setLngt] = useState(null);
   const [foodName, setFoodName] = useState("");
-  const [foodPrice, setFoodPrice] = useState("");
+  const [foodPrice, setFoodPrice] = useState();
   const [gpsLocation, setGpsLocation] = useState(true);
 
   // const [showMap, setShowMap] = useState(false);
-
-  let foodPicture = new FormData();
-  foodPicture.append("food_picture", imageFile);
-
-  console.log(foodPicture, "FOOD PICTRUE");
 
   const imageGeolocation = e => {
     const img = e;
@@ -113,23 +108,59 @@ const UploadPage = ({
       history.push("/");
     }
   };
+
   const sumbitFood = () => {
+    let foodPicture = new FormData();
+
+    foodPicture.append("user_id", localStorage.getItem("id"));
+    foodPicture.append("food_name", foodName);
+    foodPicture.append("criterion_z1", 1);
+    foodPicture.append("criterion_z2", 2);
+    foodPicture.append("criterion_z3", 3);
+    foodPicture.append("criterion_z4", 4);
+    foodPicture.append("criterion_z5", 5);
+    foodPicture.append("food_picture", imageFile);
+    foodPicture.append("latitude", lat);
+    foodPicture.append("longitude", lngt);
+    foodPicture.append("price", foodPrice);
+
+    // foodPicture.append(
+    //   "data",
+    //   JSON.stringify({
+    //     user_id: localStorage.getItem("id"),
+    //     food_name: foodName,
+    //     criterion_z1: 1,
+    //     criterion_z2: 2,
+    //     criterion_z3: 3,
+    //     criterion_z4: 4,
+    //     criterion_z5: 5,
+    //     food_picture: imageFile,
+    //     latitude: lat,
+    //     longitude: lngt,
+    //     price: foodPrice
+    //   })
+    // );
+    // foodPicture.append("food_picture", imageFile);
+
+    console.log(foodPicture, "FOOD PICTRUE");
+
     axios({
       method: "POST",
       url: "https://foodiboo.herokuapp.com/api/v1/food_dishes/create",
-      data: {
-        user_id: `${localStorage.getItem("id")}`,
-        food_name: `${foodName}`,
-        criterion_z1: 1,
-        criterion_z2: 2,
-        criterion_z3: 3,
-        criterion_z4: 4,
-        criterion_z5: 5,
-        // food_picture: foodPicture,
-        latitude: `${lat}`,
-        longitude: `${lngt}`,
-        price: `${foodPrice}`
-      }
+      data: foodPicture
+      // data: {
+      //   user_id: localStorage.getItem("id"),
+      //   food_name: `${foodName}`,
+      //   criterion_z1: 1,
+      //   criterion_z2: 2,
+      //   criterion_z3: 3,
+      //   criterion_z4: 4,
+      //   criterion_z5: 5,
+      //   food_picture: imageFile,
+      //   latitude: lat,
+      //   longitude: lngt,
+      //   price: foodPrice
+      // }
     })
       .then(response => {
         console.log(response.data);
@@ -142,16 +173,18 @@ const UploadPage = ({
         history.push("/");
       })
       .catch(error => {
-        console.log(error.response);
+        console.log(error.response.data);
       });
   };
   // console.log(showNamePopup, "POPUP");
   // console.log(foodName, "foodname");
   // console.log(foodPrice, "foodprice");
-  console.log(lat, "LAT");
-  console.log(lngt, "lng");
+  // console.log(lat, "LAT");
+  // console.log(typeof lat, "LAT");
+  // console.log(typeof lngt, "LNG");
+  // console.log(lngt, "lng");
   // console.log(previewImage, "previewimage");
-  console.log(imageFile, "imagefile");
+  // console.log(imageFile, "imagefile");
 
   useEffect(() => {
     if (previewImage !== null) {
