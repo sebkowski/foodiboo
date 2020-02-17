@@ -9,7 +9,7 @@ import CameraBar from "./components/CameraBar.js";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
-import StarRating from "./components/StarRating.js";
+
 import RatingPage from "./components/RatingPage.js";
 
 function App() {
@@ -79,22 +79,13 @@ function App() {
             setPreviewImage={setPreviewImage}
           />
         </Route>
-        <Route exact path="/StarRating">
-          <StarRating />
-        </Route>
+        
+        
         <Route exact path="/RatingPage">
           <RatingPage />
         </Route>
 
-        {/* <Route exact path="/user/:id">
-          <UserProfilePage />
-        </Route> */}
-        {/* <Route exact path="/profile" component={MyProfilePage}>
-          <MyProfilePage />
-        </Route> */}
-        {/* <Route exact path="/uploadPage">
-          <UploadPage />
-        </Route> */}
+       
       </Switch>
       <CameraBar
         imageFile={imageFile}

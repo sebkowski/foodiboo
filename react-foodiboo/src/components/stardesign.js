@@ -23,12 +23,12 @@ const stardesign =  ({
         <polyline 
         className="polyline-1"
         points={`100,100 150,100 125,0 100,100 `}
-        // style={{  stroke: "black", strokeWidth: 3 }}
+        
       />
        <polyline 
         points={`100,100 150,100 125,${getY(score1)} 100,100 `}
         className="polyline-2"
-        // style={{  stroke: "blue", strokeWidth: 3 }}
+        
       />
        <polyline transform="rotate(72 125 134)"
         points={`100,100 150,100 125,0 100,100 `}
