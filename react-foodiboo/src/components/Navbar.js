@@ -34,14 +34,22 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
         console.log(response.data);
         console.log(response.data.first_review_food_pic);
         console.log(response.data.food_id_arr);
-        console.log(response.data.food_id_arr);
+        console.log(response.data.average_c1);
         let foodsContentArr = [];
         let i;
         for (i = 0; i < response.data.food_id_arr.length; i++) {
           let foodsContentObj = {
             id: response.data.food_id_arr[i],
             food_name: searchBoxValue,
-            food_image: response.data.first_review_food_pic[i]
+            food_image: response.data.first_review_food_pic[i],
+            average_c1: response.data.average_c1[i],
+            average_c2: response.data.average_c2[i],
+            average_c3: response.data.average_c4[i],
+            average_c4: response.data.average_c5[i],
+            average_c5: response.data.average_c5[i],
+            latitude: response.data.food_latitude_arr[i],
+            longtitude: response.data.food_longitude_arr[i],
+            price: response.data.food_price_arr[i]
           };
           foodsContentArr.push(foodsContentObj);
         }
@@ -92,15 +100,17 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
             <FoodibooLogo className="foodiboo_logo" />
 
             <form onSubmit={searchFoods}>
-              <input
-                type="text"
-                placeholder="Search Food.."
-                id="search_bar"
-                value={searchBoxValue}
-                onChange={e => {
-                  setSearchBoxValue(e.target.value);
-                }}
-              />
+              {location.pathname === "/" ? (
+                <input
+                  type="text"
+                  placeholder="Search Food.."
+                  id="search_bar"
+                  value={searchBoxValue}
+                  onChange={e => {
+                    setSearchBoxValue(e.target.value);
+                  }}
+                />
+              ) : null}
             </form>
           </nav>
           <div className="hamburger_clicker" onClick={toggleNav}></div>
