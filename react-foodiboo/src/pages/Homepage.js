@@ -13,16 +13,16 @@ import test2 from "../images/test2.jpg";
 import test3 from "../images/Test3.jpg";
 import Stardesign from "../components/stardesign";
 
-const Homepage = ({ google, foods, setFoods }) => {
-  const [showMap, setShowMap] = useState([]);
+const Homepage = ({ google, foods, setFoods, showMap, setShowMap, openMap, closeMap }) => {
+  // const [showMap, setShowMap] = useState([]);
 
-  const openMap = (latit, longt) => {
-    setShowMap([latit, longt]);
-  };
+  // const openMap = (latit, longt) => {
+  //   setShowMap([latit, longt]);
+  // };
 
-  const closeMap = () => {
-    setShowMap([]);
-  };
+  // const closeMap = () => {
+  //   setShowMap([]);
+  // };
 
   const imageGeolocation = e => {
     const img = e.target;

@@ -6,7 +6,7 @@ import axios from "axios";
 import FoodibooLogo from "./foodibooLogo";
 import FoodibooIcon from "./fodibooIcon";
 
-const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
+const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods, currentUser }) => {
   let history = useHistory();
   let location = useLocation();
 
@@ -56,7 +56,23 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
         setFoods(foodsContentArr);
       })
       .catch(error => {
-        console.log(error.response);
+        console.log(error.response.data.err);
+        let foodsContentArr = [];
+        let foodsContentObj = {
+          id: 999999999999999999999999,
+          food_name: error.response.data.err,
+          food_image: "https://barrie360.com/wp-content/uploads/2019/02/missing-1-1-400x200.jpg",
+          average_c1: 1,
+          average_c2: 1,
+          average_c3: 1,
+          average_c4: 1,
+          average_c5: 1,
+          latitude: "0",
+          longtitude: "0",
+          price: "00.00"
+        };
+        foodsContentArr.push(foodsContentObj);
+        setFoods(foodsContentArr)
       });
   };
 
@@ -98,8 +114,12 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
       {location.pathname === "/UploadPage" ? null : (
         <>
           <nav id="navbar">
+<<<<<<< HEAD
 
             <Link style={{marginTop:"20px"}} to="/homePage" className="logo_link">
+=======
+            <Link style={{marginTop:"20px"}} to="/" className="logo_link" onClick={() => setFoods([])}>
+>>>>>>> Made A LOT of changes, but nothing broke. Changes were made to create the user profile page
             <FoodibooLogo className="foodiboo_logo" />
 
             </Link>
@@ -132,7 +152,7 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
         }}
       >
         <div className="hidden_nav_contents">
-          <div className="hidden_nav_title">Profile</div>
+          <Link to={`/ProfilePage/${currentUser}`}><div onClick={toggleNav} className="hidden_nav_title">Profile</div></Link>
           <div className="hidden_nav_title">Settings</div>
           <Link  to="/ContactPage"  onClick={toggleNav}>
             <div className="hidden_nav_title">Contact</div>
