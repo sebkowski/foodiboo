@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { Link, useHistory, Route, useLocation } from "react-router-dom";
+import { Link, useHistory, Route, useLocation, Redirect } from "react-router-dom";
 import Login from "./Login";
 import axios from "axios";
 import FoodibooLogo from "./foodibooLogo";
@@ -79,6 +79,8 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
     setShowMenu(!showMenu);
   };
 
+  
+
   return (
     <>
       {login && (
@@ -97,7 +99,9 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
       {location.pathname === "/UploadPage" ? null : (
         <>
           <nav id="navbar">
+            <Link style={{marginTop:"20px"}} to="/homePage" className="logo_link">
             <FoodibooLogo className="foodiboo_logo" />
+            </Link>
 
             <form onSubmit={searchFoods}>
               {location.pathname === "/" ? (
