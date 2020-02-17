@@ -99,8 +99,10 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
       {location.pathname === "/UploadPage" ? null : (
         <>
           <nav id="navbar">
-            <Link style={{marginTop:"20px"}} to="/homePage" className="logo_link" >
-            <FoodibooLogo className="foodiboo_logo"  />
+
+            <Link style={{marginTop:"20px"}} to="/homePage" className="logo_link">
+            <FoodibooLogo className="foodiboo_logo" />
+
             </Link>
 
             <form onSubmit={searchFoods}>

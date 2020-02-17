@@ -28,6 +28,7 @@ const SignupForm = ({ closeModal, setLoggedIn, loggedIn, setShowLogin, setShowMe
     })
       .then(response => {
         console.log(response.data)
+        setLoggedIn(true)
         // setShowMenu(false)
         closeModal()
       })
@@ -49,6 +50,7 @@ const SignupForm = ({ closeModal, setLoggedIn, loggedIn, setShowLogin, setShowMe
       });
   }
 
+  
   const checkUsername = newUsername => {
     const newDelay = setTimeout(() => {
       if (newUsername.length >= 6) {
@@ -116,9 +118,9 @@ const SignupForm = ({ closeModal, setLoggedIn, loggedIn, setShowLogin, setShowMe
           <Form.Group controlId="formBasicPassword">
             <Form.Label>
               Password{" "}
-              {password.length < 6 && password !== "" ? (
+              {password.length < 8 && password !== "" ? (
                 <span className="text-danger">
-                  must be 6 charatcers minimum
+                  must be 8 charatcers minimum
                 </span>
               ) : null}
             </Form.Label>
@@ -143,6 +145,8 @@ const SignupForm = ({ closeModal, setLoggedIn, loggedIn, setShowLogin, setShowMe
             />
           </Form.Group>
         </Form>
+      <div>Already have an account</div>
+        <Button onClick={toggleForm}>Sign In</Button>
       </ModalBody>
       <Modal.Footer>
         <Button variant="secondary" onClick={closeModal}>
