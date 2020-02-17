@@ -56,7 +56,23 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
         setFoods(foodsContentArr);
       })
       .catch(error => {
-        console.log(error.response);
+        console.log(error.response.data.err);
+        let foodsContentArr = [];
+        let foodsContentObj = {
+          id: 999999999999999999999999,
+          food_name: error.response.data.err,
+          food_image: "https://barrie360.com/wp-content/uploads/2019/02/missing-1-1-400x200.jpg",
+          average_c1: 1,
+          average_c2: 1,
+          average_c3: 1,
+          average_c4: 1,
+          average_c5: 1,
+          latitude: "0",
+          longtitude: "0",
+          price: "00.00"
+        };
+        foodsContentArr.push(foodsContentObj);
+        setFoods(foodsContentArr)
       });
   };
 
