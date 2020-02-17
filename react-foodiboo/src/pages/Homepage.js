@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import GoogleMapReact from "google-map-react";
+import { Link } from "react-router-dom";
 import dms2dec from "dms2dec";
 import EXIF from "exif-js";
 import ExifOrientationImg from "react-exif-orientation-img";
@@ -23,7 +24,6 @@ const Homepage = ({ google, foods, setFoods }) => {
     setShowMap([]);
   };
 
-  const openFood = () => {};
   const imageGeolocation = e => {
     const img = e.target;
     EXIF.getData(img, function() {
@@ -145,12 +145,13 @@ const Homepage = ({ google, foods, setFoods }) => {
         {foods.map(food => (
           <div className="food_container">
             <div>
-              <img
-                src={food.food_image}
-                alt={food.food_name}
-                className="food_image"
-                // onClick={openFood}
-              />
+              <Link to={`/FoodPage/${food.food_name}/${food.id}`}>
+                <img
+                  src={food.food_image}
+                  alt={food.food_name}
+                  className="food_image"
+                />
+              </Link>
             </div>
             {/* <div>STAR</div> */}
             <div className="food_info_flex_box">

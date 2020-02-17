@@ -58,8 +58,8 @@ function App() {
         <Route exact path="/RatingPage">
           <RatingPage />
         </Route>
-        <Route exact path="/FoodPage">
-          <FoodPage />
+        <Route path="/FoodPage/:foodname/:id">
+          <FoodPage foods={foods} />
         </Route>
       </Switch>
       <CameraBar

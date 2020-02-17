@@ -1,11 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import axios from "axios";
 
 import Stardesign from "../components/stardesign";
 
 import test from "../images/test.JPG";
 
-const FoodPage = ({ google }) => {
+const FoodPage = ({ google, foods }) => {
+  let { foodname, id } = useParams();
+
+  const [foodDish, setFoodDishes] = useState([]);
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: `https://foodiboo.herokuapp.com/api/v1/food_dishes/${foodname}/${id}`
+    })
+      .then(response => {
+        console.log(response.data);
+        console.log(response.data.criterion_z1_list);
+        console.log(response.data.criterion_z2_list);
+        console.log(response.data.criterion_z3_list);
+        console.log(response.data.criterion_z4_list);
+        console.log(response.data.criterion_z5_list);
+        console.log(response.data.food_pic_list);
+        console.log(response.data.reviewers_list);
+
+        let foodDishesArr = [];
+        let i;
+        for (i = 0; i < response.data.criterion_z1_list.length; i++) {
+          let foodDishesContentObj = {
+            c1: response.data.criterion_z1_list[i],
+            c2: response.data.criterion_z2_list[i],
+            c3: response.data.criterion_z3_list[i],
+            c4: response.data.criterion_z4_list[i],
+            c5: response.data.criterion_z5_list[i],
+            food_pic: response.data.food_pic_list[i],
+            reviewer: response.data.reviewers_list[i]
+          };
+          foodDishesArr.push(foodDishesContentObj);
+        }
+        setFoodDishes(foodDishesArr);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div>
       <div className="food_page_map_container">
@@ -25,30 +67,33 @@ const FoodPage = ({ google }) => {
         </Map>
       </div>
       <div className="food_page_food_review_container_box">
-        <div className="food_page_food_review_container">
-          <div className="food_page_food_review_image_container">
-            <img src={test} className="food_review_food_image"></img>
-          </div>
-          <div className="food_page_star_container">
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <div>NAME</div>
+        {foodDish.map(food => (
+          <div className="food_page_food_review_container">
+            <div className="food_page_food_review_image_container">
+              <img src={food.food_pic} className="food_review_food_image"></img>
             </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <Stardesign
-                fillOpacity={0.8}
-                viewBox={"0 -20 250 300"}
-                //   offset x y
-                height={150}
-                width={150}
-                score1={5}
-                score2={5}
-                score3={5}
-                score4={5}
-                score5={5}
-              />
+            <div className="food_page_star_container">
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <div style={{ fontSize: "14px" }}>
+                  Reviewed by: {food.reviewer}
+                </div>
+              </div>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Stardesign
+                  fillOpacity={0.8}
+                  viewBox={"0 -20 250 300"}
+                  height={150}
+                  width={150}
+                  score1={food.c1}
+                  score2={food.c2}
+                  score3={food.c3}
+                  score4={food.c4}
+                  score5={food.c5}
+                />
+              </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );

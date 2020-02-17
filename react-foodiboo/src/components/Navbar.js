@@ -46,7 +46,10 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
             average_c2: response.data.average_c2[i],
             average_c3: response.data.average_c4[i],
             average_c4: response.data.average_c5[i],
-            average_c5: response.data.average_c5[i]
+            average_c5: response.data.average_c5[i],
+            latitude: response.data.food_latitude_arr[i],
+            longtitude: response.data.food_longitude_arr[i],
+            price: response.data.food_price_arr[i]
           };
           foodsContentArr.push(foodsContentObj);
         }
