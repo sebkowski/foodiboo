@@ -99,8 +99,10 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
       {location.pathname === "/UploadPage" ? null : (
         <>
           <nav id="navbar">
+
             <Link style={{marginTop:"20px"}} to="/homePage" className="logo_link">
             <FoodibooLogo className="foodiboo_logo" />
+
             </Link>
 
             <form onSubmit={searchFoods}>
@@ -133,7 +135,9 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
         <div className="hidden_nav_contents">
           <div className="hidden_nav_title">Profile</div>
           <div className="hidden_nav_title">Settings</div>
-          <div className="hidden_nav_title">Contact</div>
+          <Link  to="/ContactPage"  onClick={toggleNav}>
+            <div className="hidden_nav_title">Contact</div>
+            </Link>
           <div className="hidden_nav_title">
             <div
               onClick={openModal}
