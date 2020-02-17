@@ -6,6 +6,8 @@ import dms2dec from "dms2dec";
 import ExifOrientationImg from "react-exif-orientation-img";
 import { useHistory } from "react-router-dom";
 
+import Loading from "../components/Loading";
+
 import arrow from "../../src/images/arrow.png";
 import close from "../../src/images/close.png";
 
@@ -25,6 +27,7 @@ const UploadPage = ({
   const [foodName, setFoodName] = useState("");
   const [foodPrice, setFoodPrice] = useState();
   const [gpsLocation, setGpsLocation] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   // const [showMap, setShowMap] = useState(false);
 
@@ -111,6 +114,7 @@ const UploadPage = ({
 
   const sumbitFood = () => {
     let foodPicture = new FormData();
+    setLoading(true);
 
     foodPicture.append("user_id", localStorage.getItem("id"));
     foodPicture.append("food_name", foodName);
@@ -123,24 +127,6 @@ const UploadPage = ({
     foodPicture.append("latitude", lat);
     foodPicture.append("longitude", lngt);
     foodPicture.append("price", foodPrice);
-
-    // foodPicture.append(
-    //   "data",
-    //   JSON.stringify({
-    //     user_id: localStorage.getItem("id"),
-    //     food_name: foodName,
-    //     criterion_z1: 1,
-    //     criterion_z2: 2,
-    //     criterion_z3: 3,
-    //     criterion_z4: 4,
-    //     criterion_z5: 5,
-    //     food_picture: imageFile,
-    //     latitude: lat,
-    //     longitude: lngt,
-    //     price: foodPrice
-    //   })
-    // );
-    // foodPicture.append("food_picture", imageFile);
 
     console.log(foodPicture, "FOOD PICTRUE");
 
@@ -200,6 +186,13 @@ const UploadPage = ({
         </div>
         {/* <img src={close} className="close_button"></img> */}
       </div>
+
+      {loading ? (
+        <div className="loading">
+          <Loading />
+        </div>
+      ) : null}
+
       {showNamePopup ? (
         <>
           <div className="blackout_background" onClick={closeNamePopup}></div>
