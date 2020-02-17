@@ -84,13 +84,13 @@ p {
   width: 100%;
   margin: 0 0 0 0;
   border-bottom: solid 3px $color4;
-  height: 17.5vh;
   background-color: white;
 }
 .food_image {
-  width: 150px;
+  object-fit: cover;
   height: 100%;
-  object-fit: fill;
+  width: 110px;
+  transform: rotate(90deg);
 }
 .food_info_flex_box {
   display: flex;

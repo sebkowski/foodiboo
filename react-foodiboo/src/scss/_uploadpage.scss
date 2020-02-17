@@ -66,7 +66,7 @@
   top: 50%;
   left: 50%;
   width: 80vw;
-  height: 50vh;
+  height: 310px;
   border: 1px solid $color4;
   border-radius: 4px;
   display: flex;
@@ -119,4 +119,13 @@
   font-size: 18px;
   text-align: center;
   color: $color4;
+}
+.star_rating_container {
+  margin: 12vh 0 0 0;
+  height: 90vh;
+  background-color: white;
+  overflow-y: hidden;
+  // backgroundColor: "white",
+  // overflowy: "hidden";
+  // height: "90vh"
 }
