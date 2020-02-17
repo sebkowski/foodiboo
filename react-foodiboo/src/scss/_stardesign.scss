@@ -17,6 +17,7 @@
 
     a {
         display: block;
+        color:$color3
     }
 }
 
@@ -24,6 +25,6 @@
     position: fixed;
     top: 450px;
     right: 10px;
-    background: $color1;
+    background: $color3;
     border: none;
 }
