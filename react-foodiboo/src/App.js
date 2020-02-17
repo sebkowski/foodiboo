@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar.js";
 import CameraBar from "./components/CameraBar.js";
 import RatingPage from "./components/RatingPage.js";
 import FoodPage from "./components/FoodPage.js";
+import ContactPage from "./components/ContactPage.js"
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
@@ -46,6 +47,9 @@ function App() {
         <Route exact path="/">
           <Homepage foods={foods} setFoods={setFoods} />
         </Route>
+        <Route exact path="/HomePage">
+          <Homepage foods={foods} setFoods={setFoods} />
+        </Route>
         <Route exact path="/uploadPage">
           <UploadPage
             imageFile={imageFile}
@@ -56,8 +60,12 @@ function App() {
         </Route>
 
         <Route exact path="/RatingPage">
-          <RatingPage />
+        <RatingPage />
         </Route>
+        
+        <Route exact patch="/ContactPage">
+          <ContactPage/>
+        </Route>        
         <Route path="/FoodPage/:foodname/:id">
           <FoodPage foods={foods} />
         </Route>

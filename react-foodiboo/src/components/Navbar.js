@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { Link, useHistory, Route, useLocation } from "react-router-dom";
+import { Link, useHistory, Route, useLocation, Redirect } from "react-router-dom";
 import Login from "./Login";
 import axios from "axios";
 import FoodibooLogo from "./foodibooLogo";
@@ -79,6 +79,8 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
     setShowMenu(!showMenu);
   };
 
+  
+
   return (
     <>
       {login && (
@@ -97,7 +99,9 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
       {location.pathname === "/UploadPage" ? null : (
         <>
           <nav id="navbar">
-            <FoodibooLogo className="foodiboo_logo" />
+            <Link style={{marginTop:"20px"}} to="/homePage" className="logo_link" >
+            <FoodibooLogo className="foodiboo_logo"  />
+            </Link>
 
             <form onSubmit={searchFoods}>
               {location.pathname === "/" ? (
@@ -129,7 +133,9 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
         <div className="hidden_nav_contents">
           <div className="hidden_nav_title">Profile</div>
           <div className="hidden_nav_title">Settings</div>
-          <div className="hidden_nav_title">Contact</div>
+          <Link  to="/ContactPage"  onClick={toggleNav}>
+            <div className="hidden_nav_title">Contact</div>
+            </Link>
           <div className="hidden_nav_title">
             <div
               onClick={openModal}
