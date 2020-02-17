@@ -5,7 +5,8 @@ import EXIF from "exif-js";
 import dms2dec from "dms2dec";
 import ExifOrientationImg from "react-exif-orientation-img";
 import { useHistory } from "react-router-dom";
-
+import { getScore } from "../components/Starinput";
+import RatingPage from "../components/RatingPage";
 import Loading from "../components/Loading";
 
 import arrow from "../../src/images/arrow.png";
@@ -16,21 +17,35 @@ const UploadPage = ({
   imageFile,
   setImageFile,
   previewImage,
-  setPreviewImage
+  setPreviewImage,
+  loading,
+  setLoading,
+  y1,
+  y2,
+  y3,
+  y4,
+  y5,
+  setY1,
+  setY2,
+  setY3,
+  setY4,
+  setY5
 }) => {
   let fileInput = React.createRef();
   let history = useHistory();
 
   const [showNamePopup, setShowNamePopup] = useState(false);
+  const [gpsLocation, setGpsLocation] = useState(true);
+  const [showRatingStar, setShowRatingStar] = useState(false);
   const [lat, setLat] = useState(null);
   const [lngt, setLngt] = useState(null);
   const [foodName, setFoodName] = useState("");
   const [foodPrice, setFoodPrice] = useState();
-  const [gpsLocation, setGpsLocation] = useState(true);
-  const [loading, setLoading] = useState(true);
 
-  // const [showMap, setShowMap] = useState(false);
-
+  const rateFood = () => {
+    setShowNamePopup(false);
+    setShowRatingStar(true);
+  };
   const imageGeolocation = e => {
     const img = e;
     EXIF.getData(img, function() {
@@ -87,6 +102,7 @@ const UploadPage = ({
   };
   const closeNamePopup = () => {
     setShowNamePopup(false);
+    // setShowRatingStar(false);
   };
 
   const changeFoodName = e => {
@@ -118,11 +134,11 @@ const UploadPage = ({
 
     foodPicture.append("user_id", localStorage.getItem("id"));
     foodPicture.append("food_name", foodName);
-    foodPicture.append("criterion_z1", 1);
-    foodPicture.append("criterion_z2", 2);
-    foodPicture.append("criterion_z3", 3);
-    foodPicture.append("criterion_z4", 4);
-    foodPicture.append("criterion_z5", 5);
+    foodPicture.append("criterion_z1", getScore(y1));
+    foodPicture.append("criterion_z2", getScore(y2));
+    foodPicture.append("criterion_z3", getScore(y3));
+    foodPicture.append("criterion_z4", getScore(y4));
+    foodPicture.append("criterion_z5", getScore(y5));
     foodPicture.append("food_picture", imageFile);
     foodPicture.append("latitude", lat);
     foodPicture.append("longitude", lngt);
@@ -134,19 +150,6 @@ const UploadPage = ({
       method: "POST",
       url: "https://foodiboo.herokuapp.com/api/v1/food_dishes/create",
       data: foodPicture
-      // data: {
-      //   user_id: localStorage.getItem("id"),
-      //   food_name: `${foodName}`,
-      //   criterion_z1: 1,
-      //   criterion_z2: 2,
-      //   criterion_z3: 3,
-      //   criterion_z4: 4,
-      //   criterion_z5: 5,
-      //   food_picture: imageFile,
-      //   latitude: lat,
-      //   longitude: lngt,
-      //   price: foodPrice
-      // }
     })
       .then(response => {
         console.log(response.data);
@@ -156,12 +159,20 @@ const UploadPage = ({
         setLngt(null);
         setPreviewImage(null);
         setImageFile(null);
+        setY1(100);
+        setY2(100);
+        setY3(100);
+        setY4(100);
+        setY5(100);
+        setLoading(false);
         history.push("/");
       })
       .catch(error => {
         console.log(error.response.data);
+        setLoading(false);
       });
   };
+
   // console.log(showNamePopup, "POPUP");
   // console.log(foodName, "foodname");
   // console.log(foodPrice, "foodprice");
@@ -184,13 +195,19 @@ const UploadPage = ({
         <div className="x_button" onClick={xButton}>
           X
         </div>
-        {/* <img src={close} className="close_button"></img> */}
       </div>
 
       {loading ? (
-        <div className="loading">
+        <>
+          <div
+            className="loading"
+            style={{
+              display: "flex",
+              justifyContent: "center"
+            }}
+          ></div>
           <Loading />
-        </div>
+        </>
       ) : null}
 
       {showNamePopup ? (
@@ -220,14 +237,39 @@ const UploadPage = ({
               </div>
             </form>
             <div className="submit_food_button_container">
-              <button className="submit_food_button" onClick={sumbitFood}>
-                Create menu
+              <button className="submit_food_button" onClick={rateFood}>
+                Rate Food
               </button>
             </div>
           </div>
         </>
       ) : null}
-      {previewImage ? (
+
+      {showRatingStar ? (
+        <>
+          {/* <div className="blackout_background" onClick={closeNamePopup}> */}
+          <div className="star_rating_container">
+            <RatingPage
+              loading={loading}
+              setLoading={setLoading}
+              y1={y1}
+              y2={y2}
+              y3={y3}
+              y4={y4}
+              y5={y5}
+              setY1={setY1}
+              setY2={setY2}
+              setY3={setY3}
+              setY4={setY4}
+              setY5={setY5}
+            />
+          </div>
+          <button className="rate-btn" onClick={sumbitFood}>
+            Submit Rating
+          </button>
+        </>
+      ) : null}
+      {previewImage && !showRatingStar ? (
         <>
           <div className="upload_image_container">
             <form>

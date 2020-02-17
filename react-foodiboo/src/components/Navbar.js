@@ -56,8 +56,7 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods }) => {
         setFoods(foodsContentArr);
       })
       .catch(error => {
-        console.log(error.response.data.err);
-        // set error message here
+        console.log(error.response);
       });
   };
 

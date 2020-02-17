@@ -8,38 +8,41 @@ import { Button } from "react-bootstrap";
 import Stardesign from "./stardesign";
 
 const div1style = {
-  display: "block",
+  display: "fixed",
   width: "100vw",
-    height: "85vh",
-  marginTop: "100px",
-  
-  background: "white",
+  height: "100vh",
+  margin: "0px 0 0 0",
+  background: "white"
 };
 
-const RatingPage = ({}) => {
-  const [y1, setY1] = useState(100);
-  const [y2, setY2] = useState(100);
-  const [y3, setY3] = useState(100);
-  const [y4, setY4] = useState(100);
-  const [y5, setY5] = useState(100);
-
-  const myProps = {
-    y1,
-    y2,
-    y3,
-    y4,
-    y5,
-    setY1,
-    setY2,
-    setY3,
-    setY4,
-    setY5
-  };
-
- 
+const RatingPage = ({
+  finalRating,
+  setFinalRating,
+  y1,
+  y2,
+  y3,
+  y4,
+  y5,
+  setY1,
+  setY2,
+  setY3,
+  setY4,
+  setY5
+}) => {
+  // const myProps = {
+  //   y1,
+  //   y2,
+  //   y3,
+  //   y4,
+  //   y5,
+  //   setY1,
+  //   setY2,
+  //   setY3,
+  //   setY4,
+  //   setY5
+  // };
 
   return (
-    
     <ReactInputPosition
       style={div1style}
       mouseActivationMethod={MOUSE_ACTIVATION.CLICK}
@@ -47,12 +50,21 @@ const RatingPage = ({}) => {
       trackItemPosition
       trackPassivePosition
     >
-
-      <Starinput {...myProps} />
-      
-      
+      <Starinput
+        // myProps={...myProps}
+        y1={y1}
+        y2={y2}
+        y3={y3}
+        y4={y4}
+        y5={y5}
+        setY1={setY1}
+        setY2={setY2}
+        setY3={setY3}
+        setY4={setY4}
+        setY5={setY5}
+        finalRating={finalRating}
+      />
     </ReactInputPosition>
-    
   );
 };
 export default RatingPage;

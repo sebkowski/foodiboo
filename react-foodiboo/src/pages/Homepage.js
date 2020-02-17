@@ -136,7 +136,6 @@ const Homepage = ({ google, foods, setFoods }) => {
           </div>
         </>
       ) : null}
-      {/* <div id="foodie_background">FOODIBOO</div> */}
       <div className="filter_container">
         <div className="filter">Filter</div>
         <div className="sort">Sort</div>
@@ -146,14 +145,13 @@ const Homepage = ({ google, foods, setFoods }) => {
           <div className="food_container">
             <div>
               <Link to={`/FoodPage/${food.food_name}/${food.id}`}>
-                <img
+                <ExifOrientationImg
                   src={food.food_image}
                   alt={food.food_name}
                   className="food_image"
                 />
               </Link>
             </div>
-            {/* <div>STAR</div> */}
             <div className="food_info_flex_box">
               <div className="food_info_container">
                 <div className="food_name">{food.food_name}</div>
