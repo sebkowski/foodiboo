@@ -103,6 +103,33 @@ function App() {
       latitude: 3.162569,
       longtitude: 101.582035,
       price: 10
+    },
+    {
+      id: 80,
+      food_name: "Lam mee",
+      food_image:
+        "https://foodiboo.s3.amazonaws.com/2020021805354715820041110987944899780380304768.jpg",
+      average_c1: 3,
+      average_c2: 4,
+      average_c3: 3,
+      average_c4: 5,
+      average_c5: 5,
+      latitude: 3.136111111111111,
+      longtitude: 101.63,
+      price: 14
+    },
+    {
+      id: 76,
+      food_name: "Ramen",
+      food_image: Ramen,
+      average_c1: 5,
+      average_c2: 4,
+      average_c3: 3,
+      average_c4: 2,
+      average_c5: 5,
+      latitude: 3.071084,
+      longtitude: 101.708105,
+      price: 33
     }
   ]);
   const [loading, setLoading] = useState(false);
