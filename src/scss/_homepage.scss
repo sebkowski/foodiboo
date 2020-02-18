@@ -88,9 +88,9 @@ p {
 }
 .food_image {
   object-fit: cover;
-  height: 100%;
+  height: 110px;
   width: 110px;
-  transform: rotate(90deg);
+  // transform: rotate(90deg);
 }
 .food_info_flex_box {
   display: flex;
