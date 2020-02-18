@@ -4,7 +4,14 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { Modal, Button, Form, ModalBody } from "react-bootstrap";
 
-const SignupForm = ({ closeModal, setLoggedIn, loggedIn, setShowLogin, setShowMenu, toggleForm }) => {
+const SignupForm = ({
+  closeModal,
+  setLoggedIn,
+  loggedIn,
+  setShowLogin,
+  setShowMenu,
+  toggleForm
+}) => {
   const [username, setusername] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -15,7 +22,7 @@ const SignupForm = ({ closeModal, setLoggedIn, loggedIn, setShowLogin, setShowMe
   let history = useHistory();
 
   function submitsignup(e) {
-    e.preventDefault()
+    e.preventDefault();
     axios({
       method: "POST",
       url: "https://foodiboo.herokuapp.com/api/v1/users/sign_up",
@@ -27,14 +34,16 @@ const SignupForm = ({ closeModal, setLoggedIn, loggedIn, setShowLogin, setShowMe
       }
     })
       .then(response => {
-        console.log(response.data)
-        setLoggedIn(true)
-        // setShowMenu(false)
-        closeModal()
+        console.log(response.data);
+        setLoggedIn(true);
+        localStorage.setItem("username", response.data.user.name);
+        localStorage.setItem("JWT", response.data.token);
+        localStorage.setItem("id", response.data.user.id);
+        closeModal();
       })
 
       .catch(error => {
-        console.log(error.response)
+        console.log(error.response);
         // console.error(error.response);
         // setIsLoading(false);
         // const errorMessage = error.response.data.message.join(". ");
@@ -50,7 +59,6 @@ const SignupForm = ({ closeModal, setLoggedIn, loggedIn, setShowLogin, setShowMe
       });
   }
 
-  
   const checkUsername = newUsername => {
     const newDelay = setTimeout(() => {
       if (newUsername.length >= 6) {
@@ -78,8 +86,7 @@ const SignupForm = ({ closeModal, setLoggedIn, loggedIn, setShowLogin, setShowMe
       <ModalBody>
         <Form id="signup-form" onSubmit={submitsignup}>
           <Form.Group controlId="formBasicUserName">
-            <div>
-            </div>  
+            <div></div>
             <Form.Label>
               Username{" "}
               {username.length < 6 ? null : usernameValid ? (
@@ -145,7 +152,7 @@ const SignupForm = ({ closeModal, setLoggedIn, loggedIn, setShowLogin, setShowMe
             />
           </Form.Group>
         </Form>
-      <div>Already have an account</div>
+        <div>Already have an account</div>
         <Button onClick={toggleForm}>Sign In</Button>
       </ModalBody>
       <Modal.Footer>
