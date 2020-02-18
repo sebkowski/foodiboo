@@ -113,7 +113,6 @@ function App() {
   const [y5, setY5] = useState(100);
 
   const currentUser = localStorage.getItem("username");
-  console.log(currentUser);
 
   return (
     <>
@@ -204,7 +203,12 @@ function App() {
           <ContactPage />
         </Route>
         <Route path="/FoodPage/:foodname/:id">
-          <FoodPage foods={foods} />
+          <FoodPage
+            foods={foods}
+            openMap={openMap}
+            showMap={showMap}
+            closeMap={closeMap}
+          />
         </Route>
       </Switch>
       <CameraBar

@@ -135,7 +135,12 @@ const ProfilePage = ({
           {foods.map(food => (
             <div className="food_container">
               <div>
-                <Link to={`/FoodPage/${food.food_name}/${food.id}`}>
+                <Link
+                  to={`/FoodPage/${food.food_name}/${food.id}`}
+                  onClick={() => {
+                    openMap(food.latitude, food.longtitude);
+                  }}
+                >
                   <img
                     src={food.food_image}
                     alt={food.food_name}
