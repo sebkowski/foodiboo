@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import axios from "axios";
+import { getScore } from "../components/Starinput";
 
 import Stardesign from "../components/stardesign";
 
 import test from "../images/test.JPG";
 
-const FoodPage = ({ google, foods }) => {
+const FoodPage = ({ google, foods
+  }) => {
   let { foodname, id } = useParams();
 
   const [foodDish, setFoodDishes] = useState([]);
@@ -78,7 +80,16 @@ const FoodPage = ({ google, foods }) => {
                   Reviewed by: {food.reviewer}
                 </div>
               </div>
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              <div style={{ display: "flex", justifyContent: "center", position:"relative" }}>
+                <div style={{position:"absolute"}}>
+
+        <div className="Star_criteria" style= {{position:"absolute", top:"-5px",left:"-15px", fontSize:"12px"}}>Taste:{food.c1}</div>
+        <div className="Star_criteria" style={{position:"absolute", top:"35px",left:"40px", fontSize:"12px"}}>Value:{food.c2}</div>
+        <div className="Star_criteria" style={{position:"absolute", top:"129px",left:"15px", fontSize:"12px"}}>Health:{food.c3}</div>
+        <div className="Star_criteria" style={{position:"absolute", top:"129px",left:"-60px", fontSize:"12px"}}>Location:{food.c4}</div>
+        <div className="Star_criteria" style={{position:"absolute", top:"35px",left:"-70px", fontSize:"12px"}}>Service:{food.c5}</div>
+
+                </div>
                 <Stardesign
                   fillOpacity={0.8}
                   viewBox={"0 -20 250 300"}
@@ -94,6 +105,7 @@ const FoodPage = ({ google, foods }) => {
             </div>
           </div>
         ))}
+        
       </div>
     </div>
   );
