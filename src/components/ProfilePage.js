@@ -163,7 +163,7 @@ const ProfilePage = ({
                 </div>
                 <div className="food_info_distance_container">
                   <div className="food_distance">
-                    <p>300m</p>
+                    <p>RM{food.price}</p>
                   </div>
                   <div className="food_info_map_container">
                     <img

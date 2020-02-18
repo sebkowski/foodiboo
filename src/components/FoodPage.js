@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import axios from "axios";
 
@@ -74,9 +74,14 @@ const FoodPage = ({ google, foods }) => {
             </div>
             <div className="food_page_star_container">
               <div style={{ display: "flex", justifyContent: "center" }}>
-                <div style={{ fontSize: "14px" }}>
-                  Reviewed by: {food.reviewer}
-                </div>
+                <Link
+                  to={`/ProfilePage/${food.reviewer}`}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <div style={{ fontSize: "14px" }}>
+                    Reviewed by: {food.reviewer}
+                  </div>
+                </Link>
               </div>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <Stardesign
