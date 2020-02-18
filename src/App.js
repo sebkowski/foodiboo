@@ -52,7 +52,7 @@ function App() {
   const [previewImage, setPreviewImage] = useState(null);
   const [foods, setFoods] = useState([
     {
-      id: 1,
+      id: 77,
       food_name: "Steak",
       food_image: Steak,
       average_c1: 5,
@@ -65,7 +65,7 @@ function App() {
       price: 45
     },
     {
-      id: 2,
+      id: 75,
       food_name: "Nasi Lemak",
       food_image: NasiLemak,
       average_c1: 4,
@@ -78,7 +78,7 @@ function App() {
       price: 13
     },
     {
-      id: 3,
+      id: 76,
       food_name: "Ramen",
       food_image: Ramen,
       average_c1: 5,
@@ -91,7 +91,7 @@ function App() {
       price: 33
     },
     {
-      id: 2,
+      id: 74,
       food_name: "Chicken Rice",
       food_image: ChickenRice,
       average_c1: 4,

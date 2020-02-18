@@ -119,14 +119,9 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods, currentUser }) => {
       {location.pathname === "/UploadPage" ? null : (
         <>
           <nav id="navbar">
-            <Link
-              style={{ marginTop: "20px" }}
-              to="/"
-              className="logo_link"
-              onClick={() => window.location.reload()}
-            >
+            <a href="/" style={{ marginTop: "20px" }} className="logo_link">
               <FoodibooLogo className="foodiboo_logo" />
-            </Link>
+            </a>
 
             <form onSubmit={searchFoods}>
               {location.pathname === "/" ? (
