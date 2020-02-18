@@ -156,7 +156,7 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods, currentUser }) => {
         }}
       >
         <div className="hidden_nav_contents">
-          <Link to={`/ProfilePage/${currentUser}`}>
+          <Link to={`/ProfilePage/${localStorage.getItem("username")}`}>
             <div onClick={toggleNav} className="hidden_nav_title">
               Profile
             </div>

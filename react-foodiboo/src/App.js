@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { Switch, Route } from "react-router-dom";
 
@@ -18,6 +18,20 @@ import Steak from "./images/Steak.JPG";
 import Ramen from "./images/Ramen.JPG";
 import NasiLemak from "./images/Nasi Lemak.JPG";
 import ChickenRice from "./images/Chicken Rice.JPG";
+
+// const getItemAsync = key => {
+//   return Promise.resolve().then(function() {
+//     return localStorage.getItem(key);
+//   });
+// };
+
+// useEffect(() => {
+//   console.log("getting jwt");
+//   getItemAsync("JWT").then(jwt => {
+//     setLoggedIn
+//   });
+//   console.log("end of function --test--");
+// }, []);
 
 function App() {
   const [showMap, setShowMap] = useState([]);
@@ -99,6 +113,7 @@ function App() {
   const [y5, setY5] = useState(100);
 
   const currentUser = localStorage.getItem("username");
+  console.log(currentUser);
 
   return (
     <>
