@@ -6,6 +6,7 @@ import MapIcon from "../images/GoogleMapsLogo.png";
 import { Link } from "react-router-dom";
 import GoogleMapReact from "google-map-react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import ExifOrientationImg from "react-exif-orientation-img/lib/ExifOrientationImg";
 
 const ProfilePage = ({
   google,
@@ -141,7 +142,7 @@ const ProfilePage = ({
                     openMap(food.latitude, food.longtitude);
                   }}
                 >
-                  <img
+                  <ExifOrientationImg
                     src={food.food_image}
                     alt={food.food_name}
                     className="food_image"
