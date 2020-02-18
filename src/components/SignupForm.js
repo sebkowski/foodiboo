@@ -39,7 +39,7 @@ const SignupForm = ({
         localStorage.setItem("username", response.data.user.name);
         localStorage.setItem("JWT", response.data.token);
         localStorage.setItem("id", response.data.user.id);
-        closeModal();
+        closeModal(true);
       })
 
       .catch(error => {
