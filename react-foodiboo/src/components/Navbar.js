@@ -123,7 +123,7 @@ const Navbar = ({ loggedIn, setLoggedIn, foods, setFoods, currentUser }) => {
               style={{ marginTop: "20px" }}
               to="/"
               className="logo_link"
-              onClick={() => setFoods([])}
+              onClick={() => window.location.reload()}
             >
               <FoodibooLogo className="foodiboo_logo" />
             </Link>

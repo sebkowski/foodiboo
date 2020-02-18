@@ -14,6 +14,11 @@ import ProfilePage from "./components/ProfilePage.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 
+import Steak from "./images/Steak.JPG";
+import Ramen from "./images/Ramen.JPG";
+import NasiLemak from "./images/Nasi Lemak.JPG";
+import ChickenRice from "./images/Chicken Rice.JPG";
+
 function App() {
   const [showMap, setShowMap] = useState([]);
 
@@ -31,7 +36,60 @@ function App() {
 
   const [imageFile, setImageFile] = useState({});
   const [previewImage, setPreviewImage] = useState(null);
-  const [foods, setFoods] = useState([]);
+  const [foods, setFoods] = useState([
+    {
+      id: 1,
+      food_name: "Steak",
+      food_image: Steak,
+      average_c1: 5,
+      average_c2: 3,
+      average_c3: 3,
+      average_c4: 5,
+      average_c5: 5,
+      latitude: 3.150312,
+      longtitude: 101.652398,
+      price: 45
+    },
+    {
+      id: 2,
+      food_name: "Nasi Lemak",
+      food_image: NasiLemak,
+      average_c1: 4,
+      average_c2: 3,
+      average_c3: 5,
+      average_c4: 3,
+      average_c5: 3,
+      latitude: 3.175999,
+      longtitude: 101.660394,
+      price: 13
+    },
+    {
+      id: 3,
+      food_name: "Ramen",
+      food_image: Ramen,
+      average_c1: 5,
+      average_c2: 4,
+      average_c3: 2,
+      average_c4: 5,
+      average_c5: 5,
+      latitude: 3.071084,
+      longtitude: 101.708105,
+      price: 33
+    },
+    {
+      id: 2,
+      food_name: "Chicken Rice",
+      food_image: ChickenRice,
+      average_c1: 4,
+      average_c2: 4,
+      average_c3: 2,
+      average_c4: 3,
+      average_c5: 3,
+      latitude: 3.162569,
+      longtitude: 101.582035,
+      price: 10
+    }
+  ]);
   const [loading, setLoading] = useState(false);
   const [finalRating, setFinalRating] = useState([]);
   const [y1, setY1] = useState(100);

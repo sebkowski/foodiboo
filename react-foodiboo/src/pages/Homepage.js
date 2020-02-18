@@ -13,7 +13,15 @@ import test2 from "../images/test2.jpg";
 import test3 from "../images/Test3.jpg";
 import Stardesign from "../components/stardesign";
 
-const Homepage = ({ google, foods, setFoods, showMap, setShowMap, openMap, closeMap }) => {
+const Homepage = ({
+  google,
+  foods,
+  setFoods,
+  showMap,
+  setShowMap,
+  openMap,
+  closeMap
+}) => {
   // const [showMap, setShowMap] = useState([]);
 
   // const openMap = (latit, longt) => {
@@ -171,7 +179,7 @@ const Homepage = ({ google, foods, setFoods, showMap, setShowMap, openMap, close
               </div>
               <div className="food_info_distance_container">
                 <div className="food_distance">
-                  <p>300m</p>
+                  <p>RM{food.price}</p>
                 </div>
                 <div className="food_info_map_container">
                   <img
