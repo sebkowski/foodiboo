@@ -185,7 +185,7 @@ function App() {
           />
         </Route>
 
-        <Route exact patch="/ContactPage">
+        <Route exact path="/ContactPage">
           <ContactPage />
         </Route>
         <Route path="/FoodPage/:foodname/:id">
