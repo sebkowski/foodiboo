@@ -18,6 +18,7 @@ import Steak from "./images/Steak.JPG";
 import Ramen from "./images/Ramen.JPG";
 import NasiLemak from "./images/Nasi Lemak.JPG";
 import ChickenRice from "./images/Chicken Rice.JPG";
+import Marinara from "./images/Marinara.jpg";
 
 // const getItemAsync = key => {
 //   return Promise.resolve().then(function() {
@@ -64,32 +65,32 @@ function App() {
       longtitude: 101.652398,
       price: 45
     },
-    // {
-    //   id: 75,
-    //   food_name: "Nasi Lemak",
-    //   food_image: NasiLemak,
-    //   average_c1: 4,
-    //   average_c2: 3,
-    //   average_c3: 5,
-    //   average_c4: 3,
-    //   average_c5: 3,
-    //   latitude: 3.175999,
-    //   longtitude: 101.660394,
-    //   price: 13
-    // },
-    // {
-    //   id: 76,
-    //   food_name: "Ramen",
-    //   food_image: Ramen,
-    //   average_c1: 5,
-    //   average_c2: 4,
-    //   average_c3: 2,
-    //   average_c4: 5,
-    //   average_c5: 5,
-    //   latitude: 3.071084,
-    //   longtitude: 101.708105,
-    //   price: 33
-    // },
+    {
+      id: 87,
+      food_name: "Marinara meatball",
+      food_image: Marinara,
+      average_c1: 3,
+      average_c2: 5,
+      average_c3: 5,
+      average_c4: 4,
+      average_c5: 3,
+      latitude: 3.13471375,
+      longtitude: 101.62669477777777,
+      price: 22
+    },
+    {
+      id: 83,
+      food_name: "Mee goreng",
+      food_image: "https://foodiboo.s3.amazonaws.com/IMG_20200217_211440.jpg",
+      average_c1: 3,
+      average_c2: 2,
+      average_c3: 3,
+      average_c4: 2,
+      average_c5: 2,
+      latitude: 3.141776,
+      longtitude: 101.628768,
+      price: 7.5
+    },
     {
       id: 74,
       food_name: "Chicken Rice",
