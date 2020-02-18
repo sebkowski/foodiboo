@@ -26,9 +26,10 @@
   width: 50%;
 }
 .food_review_food_image {
-  width: 100%;
+  width: 177px;
   height: 100%;
   object-fit: cover;
+  transform: rotate(90deg);
 }
 .food_page_star_container {
   width: 50%;
@@ -39,6 +40,5 @@
   background-color: white;
 }
 .Star_criteria {
- color:$color2
-
+  color: $color2;
 }

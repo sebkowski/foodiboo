@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import axios from "axios";
 import { getScore } from "../components/Starinput";
+import ExifOrientationImg from "react-exif-orientation-img";
 
 import Stardesign from "../components/stardesign";
 
@@ -27,6 +28,13 @@ const FoodPage = ({ google, foods, openMap, showMap, closeMap }) => {
     })
       .then(response => {
         console.log(response.data);
+        console.log(response.data.food_latitude);
+        console.log(response.data.food_longitude);
+
+        let lat = parseFloat(response.data.food_latitude);
+        let lng = parseFloat(response.data.food_longitude);
+
+        // openMap(lat, lng);
 
         // console.log(response.data.criterion_z1_list);
         // console.log(response.data.criterion_z2_list);
@@ -77,7 +85,10 @@ const FoodPage = ({ google, foods, openMap, showMap, closeMap }) => {
         {foodDish.map(food => (
           <div className="food_page_food_review_container">
             <div className="food_page_food_review_image_container">
-              <img src={food.food_pic} className="food_review_food_image"></img>
+              <ExifOrientationImg
+                src={food.food_pic}
+                className="food_review_food_image"
+              />
             </div>
             <div className="food_page_star_container">
               <div style={{ display: "flex", justifyContent: "center" }}>

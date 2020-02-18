@@ -64,32 +64,32 @@ function App() {
       longtitude: 101.652398,
       price: 45
     },
-    {
-      id: 75,
-      food_name: "Nasi Lemak",
-      food_image: NasiLemak,
-      average_c1: 4,
-      average_c2: 3,
-      average_c3: 5,
-      average_c4: 3,
-      average_c5: 3,
-      latitude: 3.175999,
-      longtitude: 101.660394,
-      price: 13
-    },
-    {
-      id: 76,
-      food_name: "Ramen",
-      food_image: Ramen,
-      average_c1: 5,
-      average_c2: 4,
-      average_c3: 2,
-      average_c4: 5,
-      average_c5: 5,
-      latitude: 3.071084,
-      longtitude: 101.708105,
-      price: 33
-    },
+    // {
+    //   id: 75,
+    //   food_name: "Nasi Lemak",
+    //   food_image: NasiLemak,
+    //   average_c1: 4,
+    //   average_c2: 3,
+    //   average_c3: 5,
+    //   average_c4: 3,
+    //   average_c5: 3,
+    //   latitude: 3.175999,
+    //   longtitude: 101.660394,
+    //   price: 13
+    // },
+    // {
+    //   id: 76,
+    //   food_name: "Ramen",
+    //   food_image: Ramen,
+    //   average_c1: 5,
+    //   average_c2: 4,
+    //   average_c3: 2,
+    //   average_c4: 5,
+    //   average_c5: 5,
+    //   latitude: 3.071084,
+    //   longtitude: 101.708105,
+    //   price: 33
+    // },
     {
       id: 74,
       food_name: "Chicken Rice",
